@@ -23,11 +23,7 @@ jobs:
 
       - name: Mirror to SourceForge
         run: |
-          git remote add sf ssh://tringali@git.code.sf.net/p/nedit/code
+          git remote add sf ssh://tringali@git.code.sf.net/p/nedit/git
 
-          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes" \
-            git push sf --all
-
-          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes" \
-            git push sf --tags
-
+          GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes" \
+            git push sf --mirror && git push sf --tags
