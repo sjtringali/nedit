@@ -11,4 +11,3 @@ source/nedit
 source/parse.c
 util/Makefile.linux
 util/Makefile.linux-static
-util/check_lin_tif
