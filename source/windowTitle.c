@@ -450,7 +450,7 @@ char *FormatWindowTitle(const char* filename,
     	   if (noOfComponents >= 0)
 	   {
                char* value = XmTextGetString(etDialog.ndirW);
-               char buf[2];
+               char buf[16];
                sprintf(&buf[0], "%d", noOfComponents);
                if (strcmp(&buf[0], value)) /* Don't overwrite unless diff. */
        	           SetIntText(etDialog.ndirW, noOfComponents);

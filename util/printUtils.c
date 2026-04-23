@@ -99,7 +99,7 @@
 #define MAX_HOST_STR 100
 #define MAX_PCMD_STR 100
 #define MAX_NAME_STR 100
-#define MAX_CMD_STR 256
+#define MAX_CMD_STR 512
 #define VMS_MAX_JOB_NAME_STR 39
 
 #define N_PRINT_PREFS 7 /* must agree with number of preferences below */
@@ -885,7 +885,8 @@ static int foundTag(const char *tagfilename, const char *tagname, char *result)
     tfile = fopen(tagfilename,"r");
     if (tfile != NULL) {
 	while (!feof(tfile)) {
-            fgets(line,sizeof(line),tfile);
+            if (fgets(line,sizeof(line),tfile) == NULL)
+                break;
             if (sscanf(line,tagformat,result) != 0) {
 		fclose(tfile);
         	return True;
