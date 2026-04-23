@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Motif and X11 development libraries
+        run: sudo apt-get update && sudo apt-get install -y libmotif-dev libxt-dev libx11-dev
+
+      - name: Create legacy X11R6 paths
+        run: sudo ln -s /usr /usr/X11R6
+
+      - name: Build
+        run: make linux
