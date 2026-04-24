@@ -1,4 +1,4 @@
-          Release Notes for NEdit Version 5.7, January 2017
+          Release Notes for NEdit Version 5.8, April 2026
 
 
 This file contains last minute notes to users about the release, which are not
@@ -10,6 +10,14 @@ version.
 If you are upgrading NEdit from a version prior to 5.0, please see the notes in
 the README file which came with the (source or executable) distribution kit,
 about updating macros and font settings in your .nedit file.
+
+New Features in 5.8
+
+  - Developers: rehosting on GitHub, tooling updates, basic CI support
+
+New Features in 5.7
+
+  - Save All
 
 New Features in 5.6
 
