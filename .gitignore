@@ -11,3 +11,8 @@ source/nedit
 source/parse.c
 util/Makefile.linux
 util/Makefile.linux-static
+doc/html/*
+doc/.version
+doc/*.man
+doc/*.html
+doc/*.doc
