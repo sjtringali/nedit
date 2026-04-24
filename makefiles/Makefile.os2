@@ -59,7 +59,7 @@ endif
 # Usage: cd to source/ and type
 #   make -f Makefile.os2 BUILD=1 nedit.exe
 #
-OBJS2=$(OBJS:.o=.obj) linkdate.obj
+OBJS2=$(OBJS:.o=.obj) 
 
 CFLAGS2=$(CFLAGS)
 LIBS2= -g -Zmt -Zcrtdll -Zbsd-signals -Zstack 0x4000 \

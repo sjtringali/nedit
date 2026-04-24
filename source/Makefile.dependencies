@@ -15,7 +15,6 @@ highlightData.o: highlightData.c highlightData.h nedit.h textBuf.h \
   regexConvert.h ../util/misc.h ../util/DialogF.h ../util/managedList.h
 interpret.o: interpret.c interpret.h nedit.h textBuf.h ../util/rbTree.h menu.h \
   text.h
-linkdate.o: linkdate.c
 macro.o: macro.c macro.h nedit.h textBuf.h text.h window.h preferences.h \
   interpret.h ../util/rbTree.h parse.h search.h server.h shell.h smartIndent.h \
   userCmds.h selection.h tags.h calltips.h textDisp.h ../util/DialogF.h \
