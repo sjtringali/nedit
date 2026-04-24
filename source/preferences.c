@@ -1700,32 +1700,32 @@ int GetPrefSortTabs(void)
     return PrefData.sortTabs;
 }
 
-void SetPerfDragDropTabs(int state)
+void SetPrefDragDropTabs(int state)
 {
     setIntPref(&PrefData.dragDropTabs, state);
 }
 
-int GetPerfDragDropTabs(void)
+int GetPrefDragDropTabs(void)
 {
     return PrefData.dragDropTabs;
 }
 
-void SetPerfDragDropTabsCursor(int state)
+void SetPrefDragDropTabsCursor(int state)
 {
     setIntPref(&PrefData.dragDropTabsCursor, state);
 }
 
-int GetPerfDragDropTabsCursor(void)
+int GetPrefDragDropTabsCursor(void)
 {
     return PrefData.dragDropTabsCursor;
 }
 
-void SetPerfDragDropTabsAnimation(int state)
+void SetPrefDragDropTabsAnimation(int state)
 {
     setIntPref(&PrefData.dragDropTabsAnimation, state);
 }
 
-int GetPerfDragDropTabsAnimation(void)
+int GetPrefDragDropTabsAnimation(void)
 {
     return PrefData.dragDropTabsAnimation;
 }

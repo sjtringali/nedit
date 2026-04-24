@@ -601,7 +601,7 @@ WindowInfo *CreateWindow(const char *name, char *geometry, int iconic)
 
     window->tabMenuPane = CreateTabContextMenu(window->tabBar, window);
     AddTabContextMenuAction(window->tabBar);
-    if (GetPerfDragDropTabs())
+    if (GetPrefDragDropTabs())
         registerDropSite(window->tabBar);
     
     /* create an unmanaged composite widget to get the folder
@@ -866,7 +866,7 @@ static Widget addTab(Widget folder, const char *string)
     AddTabContextMenuAction(tab);
 #endif /* LESSTIF_VERSION */
 
-    if (GetPerfDragDropTabs()) {
+    if (GetPrefDragDropTabs()) {
         addTabDragAction(tab);
         registerDropSite(tab);
     }
@@ -2292,7 +2292,7 @@ static Widget createTextArea(Widget parent, WindowInfo *window, int rows,
        operation and performance will be better without it) */
     TextDMaintainAbsLineNum(((TextWidget)text)->text.textD, window->showStats);
    
-    if (GetPerfDragDropTabs())
+    if (GetPrefDragDropTabs())
         registerDropSite(text);
 
     return text;

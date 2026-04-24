@@ -294,14 +294,14 @@ void beginTabDragAP(Widget w, XEvent *event, String *args, Cardinal *nArgs)
 {
     Widget dragContext;
     
-    if (!GetPerfDragDropTabs()) {
+    if (!GetPrefDragDropTabs()) {
         return;
     }
     
     dragContext = XmGetDragContext(w, event->xbutton.time);
     XtAddCallback(dragContext, XmNdropStartCallback, dropStart, NULL);
     
-    if (GetPerfDragDropTabsCursor()) {
+    if (GetPrefDragDropTabsCursor()) {
         createTabDragCursor(w, dragContext);
     }
     
@@ -687,7 +687,7 @@ void registerDropSite(Widget widget)
     XtSetArg(args[n], XmNnumImportTargets, 0); n++;
     XtSetArg(args[n], XmNdropSiteOperations, XmDROP_MOVE); n++;
     XtSetArg(args[n], XmNdropProc, tabDropProc); n++;
-    if (GetPerfDragDropTabsAnimation()) {
+    if (GetPrefDragDropTabsAnimation()) {
         XtSetArg(args[n], XmNdragProc, tabDragProc); n++;
     }
     XmDropSiteRegister (widget, args, n);
