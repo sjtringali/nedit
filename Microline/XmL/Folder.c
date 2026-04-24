@@ -912,6 +912,12 @@ LayoutTopBottom(XmLFolderWidget f,
 	  tabEffCount++;
 	}
 	
+    /* Make filenames more visible on tabs if one has many open files. */
+    if (f->folder.tabsPerRow && f->folder.tabsPerRow < tabEffCount)
+    {
+        tabEffCount = f->folder.tabsPerRow;
+    }
+
       tabPaddingWidth = (st + co + f->folder.marginWidth + ht +
 	      f->folder.tabs[0]->core.border_width) * 2;
       if (maxTabWidth * tabEffCount > f->core.width)
@@ -1116,6 +1122,10 @@ LayoutTopBottom(XmLFolderWidget f,
     }
 
   /* move active row to bottom */
+  /* Disabled! This rotates the stack of tab rows and is irritating
+     at least. May be there should be some setting in preferences to
+     switch on/off this potentially annoying feature. */
+#if 0
   tab = f->folder.activeW;
   if (tab)
     {
@@ -1128,6 +1138,7 @@ LayoutTopBottom(XmLFolderWidget f,
     }
   else
     f->folder.activeRow = -1;
+#endif
 
   /* configure tab children */
   for (i = 0; i < f->folder.tabCount; i++)
@@ -1452,6 +1463,10 @@ LayoutLeftRight(XmLFolderWidget f,
 	XtMakeResizeRequest((Widget)f, width, height, NULL, NULL);
     }
   /* move active row to bottom */
+  /* Disabled! This rotates the stack of tab rows and is irritating
+     at least. May be there should be some setting in preferences to
+     switch on/off this potentially annoying feature. */
+#if 0
   tab = f->folder.activeW;
   if (tab)
     {
@@ -1464,6 +1479,7 @@ LayoutLeftRight(XmLFolderWidget f,
     }
   else
     f->folder.activeRow = -1;
+#endif
 
   /* configure tab children */
   for (i = 0; i < f->folder.tabCount; i++)
