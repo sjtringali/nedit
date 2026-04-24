@@ -230,7 +230,6 @@ static const char *getBuildInfo(void)
     static const char *bldFormat =
         "%s\n"
         "     Built on: %s, %s, %s\n"
-        "     Built at: %s, %s\n"
         "   With Motif: %s%d.%d.%d [%s]\n"
         "Running Motif: %d.%d [%s]\n"
         "       Server: %s %d\n"
@@ -270,7 +269,6 @@ static const char *getBuildInfo(void)
         sprintf(bldInfoString, bldFormat,
              NEditVersion,
              COMPILE_OS, COMPILE_MACHINE, COMPILE_COMPILER,
-             linkdate, linktime,
              stabilities[stab], XmVERSION, XmREVISION, XmUPDATE_LEVEL,
              XmVERSION_STRING, 
              xmUseVersion/1000, xmUseVersion%1000,

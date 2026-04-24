@@ -1,8 +1,9 @@
+/* $Id: tabDragDrop.h,v 1.25 2004/08/20 19:33:21 n8gray Exp $ */
 /*******************************************************************************
 *                                                                              *
-* linkdate.c -- Compile time configuration                                     *
+* tabDragDrop.h -- Nirvana Editor Tab Drag&Drop header file                    *
 *                                                                              *
-* Copyright (C) 2001 Scott Tringali                                            *
+* Copyright 2008 The NEdit Developers                                          *
 *                                                                              *
 * This is free software; you can redistribute it and/or modify it under the    *
 * terms of the GNU General Public License as published by the Free Software    *
@@ -12,7 +13,7 @@
 *                                                                              *
 * This software is distributed in the hope that it will be useful, but WITHOUT *
 * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or        *
-* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License        *
+* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License *
 * for more details.                                                            *
 *                                                                              *
 * You should have received a copy of the GNU General Public License along with *
@@ -20,19 +21,17 @@
 * Place, Suite 330, Boston, MA  02111-1307 USA                                 *
 *                                                                              *
 * Nirvana Text Editor                                                          *
-* Noveber 30, 2001                                                             *
-*                                                                              *
-* Written by Scott Tringali, http://www.tringali.org                           *
+* Feb 27, 2009                                                                 *
 *                                                                              *
 *******************************************************************************/
 
-#ifdef HAVE_CONFIG_H
-#include "../config.h"
-#endif
+#ifndef NEDIT_TAB_DRAG_DROP_H_INCLUDED
+#define NEDIT_TAB_DRAG_DROP_H_INCLUDED
 
-#ifdef HAVE_DEBUG_H
-#include "../debug.h"
-#endif
+#include <X11/Intrinsic.h>
 
-const char linkdate[] = __DATE__;
-const char linktime[] = __TIME__;
+void beginTabDragAP(Widget w, XEvent *event, String *args, Cardinal *nArgs);
+void registerDropSite(Widget widget);
+void addTabDragAction(Widget widget);
+
+#endif /* NEDIT_TAB_DRAG_DROP_H_INCLUDED */

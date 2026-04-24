@@ -160,7 +160,7 @@ $   OBJS :=	  nedit, file, menu, window, selection, search, undo, shift, -
     	  help, preferences, tags, userCmds, regularExp, macro, text, -
     	  textSel, textDisp, textBuf, textDrag, server, highlight, -
     	  highlightData, interpret, parse, smartIndent, regexconvert, -
-    	  windowtitle, linkdate, calltips, rangeset, server_common
+    	  windowtitle, calltips, rangeset, server_common
 
 $   LINK 'lopts' 'OBJS', NEDIT_OPTIONS_FILE/OPT, -
                           [-.microline.xml]libxml/lib, [-.xlt]libXlt/lib, -
@@ -289,7 +289,7 @@ SRCS =  nedit.c selection.c file.c help.c menu.c preferences.c regularExp.c\
         search.c shift.c tags.c undo.c window.c userCmds.c macro.c text.c\
         textSel.c textDisp.c textBuf.c textDrag.c server.c highlight.c\
         highlightData.c interpret.c smartIndent.c parse.c nc.c regexconvert.c\
-        rbtree.c linkdate.c windowTitle.c calltips.c\
+        rbtree.c windowTitle.c calltips.c\
         rangeset.c, server_common.c
 
 OBJS =  selection.obj, file.obj, help.obj, menu.obj, preferences.obj, \
@@ -297,7 +297,7 @@ OBJS =  selection.obj, file.obj, help.obj, menu.obj, preferences.obj, \
         userCmds.obj, macro.obj, text.obj, textSel.obj, textDisp.obj,\
         textBuf.obj, textDrag.obj, server.obj, highlight.obj,\
         highlightData.obj, interpret.obj, smartIndent.obj, parse.obj,\
-        regexconvert.obj, rbtree.obj, linkdate.obj, windowTitle.obj, \
+        regexconvert.obj, rbtree.obj, windowTitle.obj, \
         calltips.obj, rangeset.obj, server_common.obj
 
 NEOBJS = nedit.obj

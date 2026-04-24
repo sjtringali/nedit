@@ -6,6 +6,7 @@ OBJS =	nedit.o file.o menu.o window.o selection.o search.o undo.o shift.o \
 	help.o preferences.o tags.o userCmds.o shell.o regularExp.o macro.o \
 	text.o textSel.o textDisp.o textBuf.o textDrag.o server.o highlight.o \
 	highlightData.o interpret.o parse.o smartIndent.o regexConvert.o \
+	tabDragDrop.o \
 	windowTitle.o calltips.o server_common.o rangeset.o
 
 XLTLIB = ../Xlt/libXlt.a
@@ -16,11 +17,8 @@ XMLLIB = ../Microline/XmL/libXmL.a
 
 all: nedit nc
 
-# Note there is no depedency for linkdate.c/o.  This is intentional,
-# we only want natural rebuilds to regenerate the link date.
 nedit: $(OBJS) ../util/libNUtil.a $(XMLLIB) $(XLTLIB)
-	$(CC) $(CFLAGS) -c linkdate.c -o linkdate.o
-	$(CC) $(CFLAGS) $(OBJS) linkdate.o $(XMLLIB) \
+	$(CC) $(CFLAGS) $(OBJS) $(XMLLIB) \
 	 $(XLTLIB) ../util/libNUtil.a $(LIBS) -o $@
 
 # Note LIBS isn't quite right here; it links unnecessarily against Motif
@@ -37,7 +35,7 @@ highlightData.o: highlightData.c
 	$(CC) $(CFLAGS) $(BIGGER_STRINGS) -c highlightData.c -o $@
 
 clean:
-	rm -f $(OBJS) nedit nc nc.o parse.c linkdate.o
+	rm -f $(OBJS) nedit nc nc.o parse.c
 
 parse.c: parse.y
 	@echo "NOTE:  Don't worry about 'command not found' errors here"
