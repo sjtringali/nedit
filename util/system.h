@@ -114,6 +114,15 @@
 #elif defined(__VAX)
 #   define COMPILE_MACHINE "VAX"        /* Untested, please verify */
 
+#elif defined(__arm64__)
+#   define COMPILE_MACHINE "Apple ARM64"
+
+#elif defined(__aarch64__)
+#   define COMPILE_MACHINE "ARM64"
+
+#elif defined(__arm__)
+#   deinfe COMPILE_MACHINE "ARM"
+
 #else	
 #   define COMPILE_MACHINE "Unknown"
 #endif
@@ -165,8 +174,8 @@
 #elif defined(__EMX__)                  /* I think this should be __OS2__ */
 #   define COMPILE_OS "OS/2"
 
-#elif defined(__APPLE__) || defined(__MACOSX__)
-#   define COMPILE_OS "MacOS X"
+#elif defined(__APPLE__)                /* Dropping "X" here */
+#   define COMPILE_OS "MacOS"
 
 #elif defined(__UNIXWARE__)
 #   define COMPILE_OS "UnixWare"
