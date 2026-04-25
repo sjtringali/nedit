@@ -1,0 +1,7 @@
+50_ChangeNCinMan.patch
+fix_typo_in_help.patch
+language-mode-detection.patch
+multiple-tabrows.patch
+show-filename.patch
+drag-move-v1_5.patch
+allow_reproducible_builds.patch

@@ -1,0 +1,5 @@
+Version: 5
+
+Source: https://sf.net/nedit/
+Matching-Pattern: nedit-(.*)-src\.tar\.gz
+Uversion-Mangle: s#source/.*nedit-##
