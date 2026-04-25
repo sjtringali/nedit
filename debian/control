@@ -18,7 +18,7 @@ Package: nedit
 Architecture: any
 Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: xfonts-100dpi | xfonts-75dpi | xfonts-100dpi-transcoded | xfonts-75dpi-transcoded
+Recommends: xfonts-75dpi | xfonts-100dpi-transcoded | xfonts-75dpi-transcoded
 Conflicts: nedit-dmotif, nedit-smotif
 Replaces: nedit-dmotif, nedit-smotif
 Suggests: csh
@@ -31,5 +31,5 @@ Description: powerful, customizable, Motif based text editor
  at the same time can be used productively by just about anyone who
  needs to edit text.
  .
- Because of its mature age, NEdit does not support UTF-8 text files,
- nor will that be implemented.
+ Because of its mature age, NEdit currently does not support UTF-8 text 
+ files.

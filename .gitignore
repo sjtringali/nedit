@@ -16,3 +16,32 @@ doc/.version
 doc/*.man
 doc/*.html
 doc/*.doc
+
+# Quilt state
+.pc/
+
+# Debian packaging build artifacts
+debian/files
+debian/*.debhelper
+debian/*.substvars
+debian/debhelper-build-stamp
+debian/tmp/
+debian/nedit/
+debian/.debhelper/
+
+# Package build outputs
+*.deb
+*.ddeb
+*.build
+*.buildinfo
+*.changes
+
+# Common generated archives
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.orig.tar.*
+*.debian.tar.*
+
+# Debug / package byproducts
+*.dsc

@@ -1,3 +1,10 @@
+nedit (1:5.8-1) unstable; urgency=medium
+
+  * New upstream release
+    - Drop obsolete patches (applied upstream)
+
+ -- Scott Tringali <tringali@yahoo.com>  Sat, 25 Apr 2026 12:21:42 -0400
+
 nedit (1:5.7-7) unstable; urgency=medium
 
   * QA upload.
