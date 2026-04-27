@@ -1,34 +1,34 @@
-# $Id: Makefile.macosx,v 1.7 2004/07/14 19:48:21 n8gray Exp $
-# Makefile for MacOS X
-# Based on a contribution from hopperj@macconnect.com
-# Maintained by n8gray@caltech.edu
-#
-# Note that there will probably be warnings about prebinding and/or 
-# duplicate symbol definitions, but the executable will work fine.
+# Makefile for MacOS X (Brew)
+# Scott Tringail, 4/2026
 
-# Change this line to point at the location your Motif libraries/headers are
-# installed.  (e.g. /usr/local or /sw)  Use "locate libXm." to find the
-# libraries, then remove the /lib suffix.
-MOTIFDIR=/usr/local
+# Compatability for nedit.rb
+MOTIFLINK 	= -lXm
 
-# Use the first line if you're using OpenMotif, use the second if you're using
-# LessTif from Fink.
-EXTRALINKFLAGS=-bind_at_load
-# EXTRALINKFLAGS=-force_flat_namespace
+# Homebrew paths by package
+MOTIF_HOME      = /opt/homebrew/opt/openmotif
+LIBXT_HOME      = /opt/homebrew/opt/libxt
+LIBX11_HOME     = /opt/homebrew/opt/libx11
+LIBXEXT_HOME    = /opt/homebrew/opt/libxext
+LIBXPM_HOME     = /opt/homebrew/opt/libxpm
+LIBSM_HOME      = /opt/homebrew/opt/libsm
+LIBICE_HOME     = /opt/homebrew/opt/libice
+LIBXP_HOME      = /opt/homebrew/opt/libxp
 
-# Use the first line to link to Motif statically (highly recommended) or the 
-# second line to link dynamically.  With Fink you'll probably have to use
-# dynamic linking, since they don't normally distribute the static libraries.
-MOTIFLINK=${MOTIFDIR}/lib/libXm.a
-#MOTIFLINK=-L${MOTIFDIR}/lib -lXm.2
+MACOS_INCLUDES = -I/opt/homebrew/include 
+MACOS_LIBS     = -L$(LIBXT_HOME)/lib -L$(LIBX11_HOME)/lib \
+                  -L$(LIBXEXT_HOME)/lib -L$(LIBXPM_HOME)/lib \
+                  -L$(LIBSM_HOME)/lib -L$(LIBICE_HOME)/lib \
+                  -L$(LIBXP_HOME)/lib -L$(MOTIF_HOME)/lib
 
+# Note we don't use -I/opt/X11/include and -L/opt/X11/lib here,
+# which is Quartz's libraries and there's no known Motif for that.
 
 ############### You shouldn't need to edit anything below here ##############
-CC=cc
+CC=cc -std=c89
 AR=libtool
 ARFLAGS=-static -o 
 
-# For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS\\
+# For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS
 #
 # To evaluate an alternative layout for the Replace/Find dialog, add
 # -DREPLACE_SCOPE to the CFLAGS. See the README file for more information.
@@ -36,10 +36,8 @@ ARFLAGS=-static -o
 # To test if the Motif library exports the runtime version
 # add -DHAVE__XMVERSIONSTRING to CFLAGS
 #
-CFLAGS=-O -no-cpp-precomp -mdynamic-no-pic -DNO_XMIM -I/usr/X11R6/include \
-        -I${MOTIFDIR}/include -DUSE_DIRENT -DUSE_LPR_PRINT_CMD
-LIBS= ${EXTRALINKFLAGS} -L/usr/X11R6/lib ${MOTIFLINK} -lXp \
-        -lXpm -lXext -lXt -lSM -lICE -lX11
+CFLAGS=-O -DNO_XMIM -DUSE_DIRENT -DUSE_LPR_PRINT_CMD $(MACOS_INCLUDES)
+LIBS=$(MACOS_LIBS) $(MOTIFLINK) -lXt -lX11
 
 #
 # generic part
