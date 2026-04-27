@@ -2443,7 +2443,6 @@ static void closeCB(Widget w, WindowInfo *window, XtPointer callData)
     CloseDocumentWindow(w, window, callData);
 }
 
-#ifndef NO_SESSION_RESTART
 static void saveYourselfCB(Widget w, Widget appShell, XtPointer callData)
 {
     WindowInfo *win, *topWin, **revWindowList;
@@ -2532,18 +2531,28 @@ static void saveYourselfCB(Widget w, Widget appShell, XtPointer callData)
 void AttachSessionMgrHandler(Widget appShell)
 {
     static Atom wmpAtom, syAtom = 0;
+    Atom *protocols;
+    int i, n, found = 0;
 
-    /* Add wm protocol callback for making nedit restartable by session
-       managers.  Doesn't yet handle multiple-desktops or iconifying right. */
     if (syAtom == 0) {
         wmpAtom = XmInternAtom(TheDisplay, "WM_PROTOCOLS", FALSE);
         syAtom = XmInternAtom(TheDisplay, "WM_SAVE_YOURSELF", FALSE);
     }
+
+    /* Check whether the WM actually supports WM_SAVE_YOURSELF */
+    if (XGetWMProtocols(TheDisplay, XtWindow(appShell), &protocols, &n)) {
+        for (i = 0; i < n; i++)
+            if (protocols[i] == syAtom) { found = 1; break; }
+        XFree(protocols);
+    }
+
+    if (!found)
+        return;
+
     XmAddProtocolCallback(appShell, wmpAtom, syAtom,
             (XtCallbackProc)saveYourselfCB, (XtPointer)appShell);
 }
-#endif /* NO_SESSION_RESTART */
-        
+
 /*
 ** Returns true if window is iconic (as determined by the WM_STATE property
 ** on the shell window.  I think this is the most reliable way to tell,
