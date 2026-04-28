@@ -1,0 +1,12 @@
+name: Package
+on:
+  workflow_dispatch:
+
+jobs:
+  debian:
+    runs-on: ubuntu-latest
+    container: gcc:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build source packages
+        run: make dist

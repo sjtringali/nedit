@@ -13,6 +13,9 @@ doc/*.man
 doc/*.html
 doc/*.doc
 
+# Release
+nedit-*.tar.*
+
 # Quilt state
 .pc/
 

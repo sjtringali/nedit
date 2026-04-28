@@ -13,7 +13,8 @@ about updating macros and font settings in your .nedit file.
 
 New Features in 5.8
 
-  - Developers: rehosting on GitHub, tooling updates, basic CI support
+  - Developers: rehosting on GitHub, CI support, standardize on Debian for
+    packaging, and tooling updates, 
 
 New Features in 5.7
 
