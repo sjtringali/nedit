@@ -53,9 +53,22 @@ realclean: clean
 	(cd doc;    $(MAKE) clean)
 
 #
+# Source distributions
+# Since compress is gone these days, we'll standardize on .gz
+#
+VERSION=5.8
+SRC_RELEASE=nedit-$(VERSION)-src
+dist:
+	git archive --format=tar --prefix=nedit-$(VERSION)/ --worktree-attributes HEAD > $(SRC_RELEASE).tar
+	-compress -c $(SRC_RELEASE).tar > $(SRC_RELEASE).tar.Z
+	gzip -9 -c $(SRC_RELEASE).tar > $(SRC_RELEASE).tar.gz
+	-bzip2 -9 -c $(SRC_RELEASE).tar > $(SRC_RELEASE).tar.bz2
+	@rm -f $(SRC_RELEASE).tar
+
+#
 # The following is for creating binary packages of NEdit.
 #
-RELEASE=nedit-5.8-`uname -s`-`uname -m`
+RELEASE=nedit-$(VERSION)-`uname -s`-`uname -m`
 BINDIST-FILES=source/nedit source/nc README COPYRIGHT ReleaseNotes doc/nedit.doc doc/nedit.html doc/nedit.man doc/nc.man doc/faq.txt
 
 dist-bin: $(BINDIST-FILES)
@@ -68,4 +81,10 @@ dist-bin: $(BINDIST-FILES)
 	compress -c $(RELEASE).tar > $(RELEASE).tar.Z
 	-gzip -9 -c $(RELEASE).tar > $(RELEASE).tar.gz
 	-bzip2 -9 -c $(RELEASE).tar > $(RELEASE).tar.bz2
-	rm -rf $(RELEASE) $(RELEASE).tar
+	@rm -rf $(RELEASE) $(RELEASE).tar
+
+debian-pkg:
+	dpkg-buildpackage -us -uc -b
+
+.PHONY: all debian-pkg docs clean realclean dist-bin dist
+
