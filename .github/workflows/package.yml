@@ -20,9 +20,7 @@ jobs:
             debhelper \
             libmotif-dev \
             libxt-dev \
-            libx11-dev \
-            libxp-dev \
-            libxpm-dev
+            libx11-dev
       - name: Build Debian packages
         run: make debian-pkg
       - name: Upload packages
