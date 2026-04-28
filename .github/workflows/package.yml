@@ -9,12 +9,12 @@ on:
 jobs:
   debian:
     runs-on: ubuntu-latest
-    container: debian:stable-slim
+    container: debian:stable
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: |
-          apt-get update && apt-get install -y \
+          apt-get update && apt-get install -y --no-install-recommends \
             build-essential \
             debhelper \
             libmotif-dev \
