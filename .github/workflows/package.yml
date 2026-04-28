@@ -21,7 +21,10 @@ jobs:
             libxt-dev \
             libx11-dev
       - name: Build Debian packages
-        run: make debian-pkg
+        run: |
+          pwd
+          ls -l debian/
+          make debian-pkg
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
