@@ -86,5 +86,9 @@ dist-bin: $(BINDIST-FILES)
 debian-pkg:
 	dpkg-buildpackage -us -uc -b
 
-.PHONY: all debian-pkg docs clean realclean dist-bin dist
+rpm-pkg: dist
+	cp $(SRC_RELEASE).tar.gz fedora/
+	rpmbuild -ba fedora/nedit.spec --define '_sourcedir $(CURDIR)/fedora'
+
+.PHONY: all debian-pkg rpm-pkg docs clean realclean dist-bin dist
 
