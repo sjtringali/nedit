@@ -5,14 +5,9 @@ Release: 22%{?dist}
 Source: http://sourceforge.net/projects/nedit/files/nedit-source/nedit-%{version}-src.tar.gz
 Source1: nedit.desktop
 Source2: nedit-icon.png
-Patch0: nedit-5.5-security.patch
-# https://sourceforge.net/p/nedit/git/ci/838292fe4034fc4ab4567f1d87193a4e6a57eca0/
-Patch1: 0001-Force-C89-on-gcc-linux-to-prevent-accidental-changes.patch
 # Append to Fedora's C_OPT_FLAGS and LD_OPT_FLAGS rather than overriding them.
 Patch2: nedit-5.7-makefiles.patch
-Patch3: nedit-5.6-utf8.patch
 Patch5: nedit-5.7-nc-manfix.patch
-Patch6: nedit-5.5-visfix.patch
 Patch8: nedit-5.5-scroll.patch
 URL: http://sourceforge.net/projects/nedit/
 # Automatically converted from old format: GPLv2 - review is highly recommended.
@@ -32,12 +27,8 @@ Macintosh or Microsoft Windows style of interface.
 
 %prep
 %setup -q
-%patch -P0 -p1 -b .security
-%patch -P1 -p1 -b .c89
 %patch -P2 -p1 -b .makefiles
-%patch -P3 -p1 -b .utf8
 %patch -P5 -p1 -b .nc-manfix
-%patch -P6 -p1 -b .visfix
 %patch -P8 -p1 -b .scroll
 
 %build
