@@ -1376,25 +1376,15 @@ void PrintWindow(WindowInfo *window, int selectedOnly)
 */
 void PrintString(const char *string, int length, Widget parent, const char *jobName)
 {
-    char tmpFileName[L_tmpnam];    /* L_tmpnam defined in stdio.h */
+    char tmpFileName[] = "/tmp/neditXXXXXX";
     FILE *fp;
     int fd;
 
     /* Generate a temporary file name */
-    /*  If the glibc is used, the linker issues a warning at this point. This is
-	very thoughtful of him, but does not apply to NEdit. The recommended
-	replacement mkstemp(3) uses the same algorithm as NEdit, namely
-	    1. Create a filename
-	    2. Open the file with the O_CREAT|O_EXCL flags
-	So all an attacker can do is a DoS on the print function. */
-    tmpnam(tmpFileName);
+    fd = mkstemp(tmpFileName);
 
     /* open the temporary file */
-#ifdef VMS
-    if ((fp = fopen(tmpFileName, "w", "rfm = stmlf")) == NULL)
-#else
-    if ((fd = open(tmpFileName, O_CREAT|O_EXCL|O_WRONLY, S_IRUSR | S_IWUSR)) < 0 || (fp = fdopen(fd, "w")) == NULL)
-#endif /* VMS */
+    if ((fp = fdopen(fd, "w")) == NULL)
     {
         DialogF(DF_WARN, parent, 1, "Error while Printing",
                 "Unable to write file for printing:\n%s", "OK",
@@ -1408,7 +1398,7 @@ void PrintString(const char *string, int length, Widget parent, const char *jobN
     
     /* write to the file */
 #ifdef IBM_FWRITE_BUG
-    write(fileno(fp), string, length);
+    write(fd, string, length);
 #else
     fwrite(string, sizeof(char), length, fp);
 #endif
