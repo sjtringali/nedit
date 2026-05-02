@@ -2633,7 +2633,7 @@ sub emit_helpText
     #-----------------------------
     $pgmVersion = $variables{ version };
     $pgmVersion .= '\n' . date() if $pgmVersion !~ /$neditDefaultMarker/;
-    print $stream "\nstatic const char * NEditVersion = \"$pgmVersion\\n\";\n";
+    print $stream "\nstatic const char NEditVersion[] = \"$pgmVersion\\n\";\n";
 }
 
 #-------------------------------------------------------------------------------

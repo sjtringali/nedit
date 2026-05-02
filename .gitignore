@@ -9,9 +9,6 @@ source/parse.c
 util/Makefile.*
 doc/html/*
 doc/.version
-doc/*.man
-doc/*.html
-doc/*.doc
 
 # Release
 nedit-*.tar.*
