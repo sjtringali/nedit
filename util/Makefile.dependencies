@@ -1,13 +1,16 @@
-DialogF.o: DialogF.c DialogF.h misc.h
-clearcase.o: clearcase.c clearcase.h
-fileUtils.o: fileUtils.c fileUtils.h utils.h
-fontsel.o: fontsel.c fontsel.h misc.h DialogF.h
-getfiles.o: getfiles.c getfiles.h fileUtils.h misc.h
-managedList.o: managedList.c managedList.h misc.h
-misc.o: misc.c misc.h DialogF.h
-prefFile.o: prefFile.c prefFile.h fileUtils.h utils.h
-printUtils.o: printUtils.c printUtils.h DialogF.h misc.h prefFile.h
-utils.o: utils.c utils.h
-vmsUtils.o: vmsUtils.c
-refString.o: refString.c
-rbTree.o: rbTree.c
+# DO NOT DELETE
+
+DialogF.o: DialogF.h misc.h nedit_malloc.h
+clearcase.o: clearcase.h nedit_malloc.h
+fileUtils.o: fileUtils.h utils.h nedit_malloc.h
+fontsel.o: fontsel.h misc.h nedit_malloc.h DialogF.h
+getfiles.o: getfiles.h fileUtils.h misc.h nedit_malloc.h
+managedList.o: managedList.h misc.h DialogF.h nedit_malloc.h
+misc.o: misc.h DialogF.h nedit_malloc.h
+motif.o: motif.h
+nedit_malloc.o: nedit_malloc.h
+prefFile.o: prefFile.h fileUtils.h utils.h nedit_malloc.h
+printUtils.o: printUtils.h DialogF.h misc.h prefFile.h nedit_malloc.h
+rbTree.o: rbTree.h ../util/nedit_malloc.h
+refString.o: refString.h nedit_malloc.h
+utils.o: utils.h nedit_malloc.h
