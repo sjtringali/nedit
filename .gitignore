@@ -45,3 +45,6 @@ debian/.debhelper/
 
 # Debug / package byproducts
 *.dsc
+
+# MacOS
+.DS_Store

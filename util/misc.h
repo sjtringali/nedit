@@ -142,4 +142,18 @@ void WmClientMsg(Display *disp, Window win, const char *msg,
         unsigned long data2, unsigned long data3,
         unsigned long data4);
 
+/* X server implementation detection (runtime, based on extensions and vendor) */
+enum XServerImpl {
+    XSI_UNKNOWN,
+    XSI_XORG,
+    XSI_APPLE,     /* XQuartz */
+    XSI_XWAYLAND,
+    XSI_XVNC,
+    XSI_XMING,
+    XSI_CYGWIN
+};
+enum XServerImpl GetXServerImpl(Display *display);
+const char *GetXServerImplName(enum XServerImpl impl);
+void InstallAppleWMVirtualKeyBindings(Display *display);
+
 #endif /* NEDIT_MISC_H_INCLUDED */

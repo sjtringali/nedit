@@ -157,6 +157,12 @@ static char *fallbackResources[] = {
        If using OpenMotif 2.3.3 or better, support XFT fonts.  XFT is
        claimed supported in OpenMotif 2.3.0, but doesn't work very well,
        as insensitive text buttons are blank.  That bug is fixed in 2.3.3.
+
+       The XFT render tables and XLFD fontList resources are no longer
+       mutually exclusive.  Motif prefers render tables when present,
+       but the fontList resources act as a fallback for environments
+       where XFT is unavailable at runtime (e.g. remote displays, VNC,
+       or bare X servers without fontconfig).
       */
 
 #if (XmVersion >= 2003 && XmUPDATE_LEVEL >= 3 && USE_XFT == 1)
@@ -169,7 +175,9 @@ static char *fallbackResources[] = {
     "*fixedRT.fontType:         FONT_IS_XFT",
     "*fixedRT.fontName:         Monospace",
     "*fixedRT.fontSize:         9",
-#elif LESSTIF_VERSION
+#endif
+    /* XLFD fontList defaults — always included as a fallback */
+#if LESSTIF_VERSION
     "*FontList: "               NEDIT_DEFAULT_FONT,
     "*XmText.FontList: "        NEDIT_FIXED_FONT,
     "*XmTextField.FontList: "   NEDIT_FIXED_FONT,
@@ -507,6 +515,7 @@ int main(int argc, char **argv)
     fixupBrokenXKeysymDB();
     patchResourcesForVisual();
     patchResourcesForKDEbug();
+    InstallAppleWMVirtualKeyBindings(TheDisplay);
     
     /* Initialize global symbols and subroutines used in the macro language */
     InitMacroGlobals();

@@ -2420,3 +2420,111 @@ void WmClientMsg(Display *disp, Window win, const char *msg,
         fprintf(stderr, "nedit: cannot send %s EWMH event.\n", msg);
     }
 }
+
+/*
+** Identify the X server platform at runtime by probing extensions and the
+** vendor string.  Extensions are checked first because vendor strings are
+** unreliable (e.g. XQuartz reports "The X.Org Foundation").
+*/
+enum XServerImpl GetXServerImpl(Display *display)
+{
+    int dummy;
+    const char *vendor;
+
+    if (display == NULL) return XSI_UNKNOWN;
+
+    if (XQueryExtension(display, "Apple-WM", &dummy, &dummy, &dummy))
+        return XSI_APPLE;
+
+    vendor = ServerVendor(display);
+    if (vendor == NULL) return XSI_UNKNOWN;
+
+    if (strstr(vendor, "Cygwin"))  return XSI_CYGWIN;
+    if (strstr(vendor, "Xming"))   return XSI_XMING;
+
+    /* Xwayland also reports X.Org, so check for the Xwayland extension */
+    if (XQueryExtension(display, "XWAYLAND", &dummy, &dummy, &dummy))
+        return XSI_XWAYLAND;
+
+    if (strstr(vendor, "TigerVNC") || strstr(vendor, "RealVNC")
+        || strstr(vendor, "TurboVNC"))
+        return XSI_XVNC;
+
+    if (strstr(vendor, "X.Org"))   return XSI_XORG;
+
+    return XSI_UNKNOWN;
+}
+
+const char *GetXServerImplName(enum XServerImpl impl)
+{
+    switch (impl) {
+    case XSI_XORG:     return "X.Org";
+    case XSI_APPLE:    return "XQuartz (Apple)";
+    case XSI_XWAYLAND: return "XWayland";
+    case XSI_XVNC:     return "VNC";
+    case XSI_XMING:    return "Xming";
+    case XSI_CYGWIN:   return "Cygwin/X";
+    default:           return "Unknown";
+    }
+}
+
+/*
+** Install Motif virtual key bindings for XQuartz (Apple) X servers.
+** XQuartz identifies as "The X.Org Foundation" but has an Apple keyboard
+** layout where Mode_switch is on mod1 and Meta is on mod2.  Motif has no
+** vendor table for this configuration, so without explicit bindings the
+** osf virtual keys may not resolve and accelerators won't fire.
+** Must be called after XtOpenDisplay but before any shells are created.
+*/
+void InstallAppleWMVirtualKeyBindings(Display *display)
+{
+    Atom virtKeyAtom;
+    Window rootWindow;
+    Atom actualType;
+    int actualFormat;
+    unsigned long nItems, bytesAfter;
+    unsigned char *existing = NULL;
+
+    static const char appleBindings[] =
+        "osfCancel:<Key>Escape\n"
+        "osfLeft:<Key>Left\n"
+        "osfUp:<Key>Up\n"
+        "osfRight:<Key>Right\n"
+        "osfDown:<Key>Down\n"
+        "osfEndLine:<Key>End\n"
+        "osfBeginLine:<Key>Home\n"
+        "osfPageUp:<Key>Prior\n"
+        "osfPageDown:<Key>Next\n"
+        "osfBackSpace:<Key>BackSpace\n"
+        "osfDelete:<Key>Delete\n"
+        "osfInsert:<Key>Insert\n"
+        "osfAddMode:Shift<Key>F8\n"
+        "osfHelp:<Key>F1\n"
+        "osfMenu:Shift<Key>F10\n"
+        "osfMenuBar:<Key>F10\n"
+        "osfActivate:<Key>KP_Enter\n"
+        "osfClear:<Key>Clear\n"
+        "osfUndo:<Key>Undo\n";
+
+    if (display == NULL) return;
+
+    if (GetXServerImpl(display) != XSI_APPLE)
+        return;
+
+    rootWindow = RootWindow(display, DefaultScreen(display));
+    virtKeyAtom = XInternAtom(display, "_MOTIF_DEFAULT_BINDINGS", False);
+
+    /* Don't clobber bindings that are already installed (e.g. by mwm) */
+    if (XGetWindowProperty(display, rootWindow, virtKeyAtom, 0, 1, False,
+                           XA_STRING, &actualType, &actualFormat, &nItems,
+                           &bytesAfter, &existing) == Success
+        && actualType != None)
+    {
+        XFree(existing);
+        return;
+    }
+
+    XChangeProperty(display, rootWindow, virtKeyAtom, XA_STRING, 8,
+                    PropModeReplace,
+                    (unsigned char *)appleBindings, strlen(appleBindings));
+}
