@@ -1491,25 +1491,25 @@ void CreateGeometryString(char *string, int x, int y,
     int nChars;
     
     if (bitmask & WidthValue) {
-    	sprintf(ptr, "%d%n", width, &nChars);
+    	nChars = sprintf(ptr, "%d", width);
 	ptr += nChars;
     }
     if (bitmask & HeightValue) {
-	sprintf(ptr, "x%d%n", height, &nChars);
+	nChars = sprintf(ptr, "x%d", height);
 	ptr += nChars;
     }
     if (bitmask & XValue) {
 	if (bitmask & XNegative)
-    	    sprintf(ptr, "-%d%n", -x, &nChars);
+    	    nChars = sprintf(ptr, "-%d", -x);
 	else
-    	    sprintf(ptr, "+%d%n", x, &nChars);
+    	    nChars = sprintf(ptr, "+%d", x);
 	ptr += nChars;
     }
     if (bitmask & YValue) {
 	if (bitmask & YNegative)
-    	    sprintf(ptr, "-%d%n", -y, &nChars);
+    	    nChars = sprintf(ptr, "-%d", -y);
 	else
-    	    sprintf(ptr, "+%d%n", y, &nChars);
+    	    nChars = sprintf(ptr, "+%d", y);
 	ptr += nChars;
     }
     *ptr = '\0';

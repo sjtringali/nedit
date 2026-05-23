@@ -159,7 +159,7 @@
 #elif defined(__FreeBSD__)
 #   define COMPILE_OS "FreeBSD"
 
-#elif defined(__OpenBSD__)              /* Untested, please verify */
+#elif defined(__OpenBSD__)
 #   define COMPILE_OS "OpenBSD"
 
 #elif defined(__NetBSD__)               /* Untested, please verify */
