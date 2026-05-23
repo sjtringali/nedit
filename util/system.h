@@ -162,7 +162,7 @@
 #elif defined(__OpenBSD__)
 #   define COMPILE_OS "OpenBSD"
 
-#elif defined(__NetBSD__)               /* Untested, please verify */
+#elif defined(__NetBSD__)
 #   define COMPILE_OS "NetBSD"
 
 #elif defined(__bsdi)                   /* Untested, please verify */

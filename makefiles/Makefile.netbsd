@@ -1,6 +1,15 @@
-# $Id: Makefile.netbsd,v 1.6 2003/11/22 13:03:39 edg Exp $
-CC=cc
-AR=ar
+# Makefile for NetBSD (pkgsrc)
+# Updated 5/2026: CC?/AR?, split LOCALBASE/X11BASE
+#
+# Motif comes from pkgsrc (/usr/pkg), X11 from base (/usr/X11R6).
+# Override LOCALBASE or X11BASE if your install differs.
+#
+LOCALBASE?=/usr/pkg
+X11BASE?=/usr/X11R6
+
+CC?=cc
+AR?=ar
+ARFLAGS=-ur
 
 # For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS
 #
@@ -10,9 +19,10 @@ AR=ar
 # To test if the Motif library exports the runtime version
 # add -DHAVE__XMVERSIONSTRING to CFLAGS
 #
-CFLAGS=-O -I/usr/X11R6/include -DUSE_DIRENT -DUSE_LPR_PRINT_CMD
-ARFLAGS=-ur
-LIBS= -L/usr/X11R6/lib -lm -lXm -lXpm -lXext -lXt -lSM -lICE -lX11
+CFLAGS=-O -I${X11BASE}/include -I${LOCALBASE}/include \
+       -DUSE_DIRENT -DUSE_LPR_PRINT_CMD
+
+MOTIFLIB?=-L${LOCALBASE}/lib -lXm
+LIBS=${MOTIFLIB} -L${X11BASE}/lib -lXpm -lXext -lXt -lSM -lICE -lX11 -lm
 
 include Makefile.common
-
