@@ -6,8 +6,8 @@
 #
 PREFIX?=/usr/local
 
-CC=cc
-AR=ar
+CC?=cc
+AR?=ar
 ARFLAGS=-ur
 
 # For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS
@@ -22,3 +22,7 @@ CFLAGS=-O -I${PREFIX}/include -DUSE_DIRENT -DUSE_LPR_PRINT_CMD -DUSE_XMIM
 LIBS=-L${PREFIX}/lib -lXm -lXpm -lXext -lXt -lSM -lICE -lX11 -lm
 
 include Makefile.common
+
+install: nedit nc
+	${INSTALL} ${COPY} ${STRIP} nedit $(DESTDIR)${PREFIX}/bin
+	${INSTALL} ${COPY} ${STRIP} nc $(DESTDIR)${PREFIX}/bin/nclient
