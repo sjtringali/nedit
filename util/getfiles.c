@@ -215,22 +215,22 @@ directories shown in the \"Files\" field.  The default filter of \
 
 static void newFileOKCB(Widget w, Boolean *client_data,
 	       XmFileSelectionBoxCallbackStruct *call_data);
-static void newFileCancelCB(Widget w, Boolean *client_data, caddr_t 
+static void newFileCancelCB(Widget w, Boolean *client_data, XtPointer 
                call_data);
-static void newHelpCB(Widget w, Widget helpPanel, caddr_t call_data);
+static void newHelpCB(Widget w, Widget helpPanel, XtPointer call_data);
 static void createYesNoDialog(Widget parent);
 static void createErrorDialog(Widget parent);
 static int  doYesNoDialog(const char *msg);
 static void doErrorDialog(const char *errorString, const char *filename);
 static void existOkCB(Widget w, Boolean * client_data,
 	              XmFileSelectionBoxCallbackStruct *call_data);
-static void existCancelCB(Widget w, Boolean * client_data, caddr_t call_data);
-static void existHelpCB(Widget w, Widget helpPanel, caddr_t call_data);
-static void errorOKCB(Widget w, caddr_t client_data, caddr_t call_data);
-static void yesNoOKCB(Widget w, caddr_t client_data, caddr_t call_data);
-static void yesNoCancelCB(Widget w, caddr_t client_data, caddr_t call_data);
+static void existCancelCB(Widget w, Boolean * client_data, XtPointer call_data);
+static void existHelpCB(Widget w, Widget helpPanel, XtPointer call_data);
+static void errorOKCB(Widget w, XtPointer client_data, XtPointer call_data);
+static void yesNoOKCB(Widget w, XtPointer client_data, XtPointer call_data);
+static void yesNoCancelCB(Widget w, XtPointer client_data, XtPointer call_data);
 static Widget createPanelHelp(Widget parent, const char *text, const char *title);
-static void helpDismissCB(Widget w, Widget helpPanel, caddr_t call_data);
+static void helpDismissCB(Widget w, Widget helpPanel, XtPointer call_data);
 static void makeListTypeable(Widget listW);
 static void listCharEH(Widget w, XtPointer callData, XEvent *event,
 	Boolean *continueDispatch);
@@ -842,13 +842,13 @@ static void newFileOKCB(Widget	w, Boolean *client_data,
 }
 
 
-static void newFileCancelCB(Widget w, Boolean *client_data, caddr_t call_data)
+static void newFileCancelCB(Widget w, Boolean *client_data, XtPointer call_data)
 {
     SelectResult = GFN_CANCEL;
     *client_data = True;
 }
 
-static void newHelpCB(Widget w, Widget helpPanel, caddr_t call_data)
+static void newHelpCB(Widget w, Widget helpPanel, XtPointer call_data)
 {
     ManageDialogCenteredOnPointer(helpPanel);
 }
@@ -879,28 +879,28 @@ static void existOkCB(Widget w, Boolean * client_data,
 }
 
 
-static void existCancelCB(Widget w, Boolean * client_data, caddr_t call_data)
+static void existCancelCB(Widget w, Boolean * client_data, XtPointer call_data)
 {
     SelectResult = GFN_CANCEL;
     *client_data = True;		/* done with dialog		*/
 }
 
-static void yesNoOKCB(Widget w, caddr_t client_data, caddr_t call_data)
+static void yesNoOKCB(Widget w, XtPointer client_data, XtPointer call_data)
 {
     YesNoResult = ynYes;
 }
 
-static void existHelpCB(Widget w, Widget helpPanel, caddr_t call_data)
+static void existHelpCB(Widget w, Widget helpPanel, XtPointer call_data)
 {
     ManageDialogCenteredOnPointer(helpPanel);
 }
 
-static void errorOKCB(Widget w, caddr_t client_data, caddr_t call_data)
+static void errorOKCB(Widget w, XtPointer client_data, XtPointer call_data)
 {
     ErrorDone = True;
 }
 
-static void yesNoCancelCB(Widget w, caddr_t client_data, caddr_t call_data)
+static void yesNoCancelCB(Widget w, XtPointer client_data, XtPointer call_data)
 {
     YesNoResult = ynNo;
 }
@@ -952,7 +952,7 @@ static Widget createPanelHelp(Widget parent, const char *helpText, const char *t
     return form;
 }
 
-static void helpDismissCB(Widget w, Widget helpPanel, caddr_t call_data)
+static void helpDismissCB(Widget w, Widget helpPanel, XtPointer call_data)
 {
     XtUnmanageChild(helpPanel);
 }

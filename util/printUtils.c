@@ -115,14 +115,14 @@ struct printPrefDescrip {
 
 /* Function Prototypes */
 static Widget createForm(Widget parent);
-static void allowOnlyNumInput(Widget widget, caddr_t client_data,
+static void allowOnlyNumInput(Widget widget, XtPointer client_data,
 	XmTextVerifyCallbackStruct *call_data);
-static void noSpaceOrPunct(Widget widget, caddr_t client_data,
+static void noSpaceOrPunct(Widget widget, XtPointer client_data,
 	XmTextVerifyCallbackStruct *call_data);
-static void updatePrintCmd(Widget w, caddr_t client_data, caddr_t call_data);
-static void printCmdModified(Widget w, caddr_t client_data, caddr_t call_data);
-static void printButtonCB(Widget widget, caddr_t client_data, caddr_t call_data);
-static void cancelButtonCB(Widget widget, caddr_t client_data, caddr_t call_data);
+static void updatePrintCmd(Widget w, XtPointer client_data, XtPointer call_data);
+static void printCmdModified(Widget w, XtPointer client_data, XtPointer call_data);
+static void printButtonCB(Widget widget, XtPointer client_data, XtPointer call_data);
+static void cancelButtonCB(Widget widget, XtPointer client_data, XtPointer call_data);
 static void setQueueLabelText(void);
 static int fileInDir(const char *filename, const char *dirpath, unsigned short mode_flags);
 static int fileInPath(const char *filename, unsigned short mode_flags);
@@ -559,7 +559,7 @@ static void setHostLabelText(void)
     XmStringFree( st0 );
 }
 
-static void allowOnlyNumInput(Widget widget, caddr_t client_data,
+static void allowOnlyNumInput(Widget widget, XtPointer client_data,
 			      XmTextVerifyCallbackStruct *call_data)
 {
     int i, textInserted, nInserted;
@@ -581,7 +581,7 @@ static void allowOnlyNumInput(Widget widget, caddr_t client_data,
 ** Prohibit a relatively random sampling of characters that will cause
 ** problems on command lines
 */
-static void noSpaceOrPunct(Widget widget, caddr_t client_data,
+static void noSpaceOrPunct(Widget widget, XtPointer client_data,
 			      XmTextVerifyCallbackStruct *call_data)
 {
     int i, j, textInserted, nInserted;
@@ -606,7 +606,7 @@ static void noSpaceOrPunct(Widget widget, caddr_t client_data,
     call_data->doit = True;
 }
 
-static void updatePrintCmd(Widget w, caddr_t client_data, caddr_t call_data)
+static void updatePrintCmd(Widget w, XtPointer client_data, XtPointer call_data)
 {
     char command[MAX_CMD_STR], copiesArg[MAX_OPT_STR+MAX_INT_STR];
     char jobArg[MAX_NAME_STR], hostArg[MAX_OPT_STR+MAX_HOST_STR];
@@ -680,14 +680,14 @@ static void updatePrintCmd(Widget w, caddr_t client_data, caddr_t call_data)
     CmdFieldModified = False;
 }
 
-static void printCmdModified(Widget w, caddr_t client_data, caddr_t call_data)
+static void printCmdModified(Widget w, XtPointer client_data, XtPointer call_data)
 {
     /* Indicate that the user has specifically modified the print command
        and that this field should be left as is in subsequent dialogs */
     CmdFieldModified = True;
 }
 
-static void printButtonCB(Widget widget, caddr_t client_data, caddr_t call_data)
+static void printButtonCB(Widget widget, XtPointer client_data, XtPointer call_data)
 {
     char *str, command[MAX_CMD_STR];
 #ifdef VMS
@@ -788,7 +788,7 @@ static void printButtonCB(Widget widget, caddr_t client_data, caddr_t call_data)
     DoneWithDialog = True;
 }
 
-static void cancelButtonCB(Widget widget, caddr_t client_data, caddr_t call_data)
+static void cancelButtonCB(Widget widget, XtPointer client_data, XtPointer call_data)
 {
     DoneWithDialog = True;
     CmdFieldModified = False;

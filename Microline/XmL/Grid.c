@@ -6832,7 +6832,7 @@ GetCoreBackground(Widget w,
 		  int offset,
 		  XrmValue *value)
 	{
-	value->addr = (caddr_t)&w->core.background_pixel;
+	value->addr = (XPointer)&w->core.background_pixel;
 	}
 
 static void
@@ -6843,7 +6843,7 @@ GetManagerForeground(Widget w,
 	XmLGridWidget g;
 
 	g = (XmLGridWidget)w;
-	value->addr = (caddr_t)&g->manager.foreground;
+	value->addr = (XPointer)&g->manager.foreground;
 	}
 
 static void
@@ -7034,7 +7034,7 @@ ButtonMotion(Widget w,
 		}
 	if (!g->grid.dragTimerSet && dragTimerSet)
 		g->grid.dragTimerId = XtAppAddTimeOut(XtWidgetToApplicationContext(w),
-			80, DragTimer, (caddr_t)g);
+			80, DragTimer, (XtPointer)g);
 	else if (g->grid.dragTimerSet && !dragTimerSet)
 		XtRemoveTimeOut(g->grid.dragTimerId);
 	g->grid.dragTimerSet = dragTimerSet;
@@ -7172,7 +7172,7 @@ DragTimer(XtPointer clientData,
 	if (extRow != -1 && extCol != -1)
 		ExtendSelect(g, (XEvent *)0, False, extRow, extCol);
 	g->grid.dragTimerId = XtAppAddTimeOut(XtWidgetToApplicationContext(w),
-		80, DragTimer, (caddr_t)g);
+		80, DragTimer, (XtPointer)g);
 	}
 
 /*----------------------------------------------------------------------*/
@@ -7591,7 +7591,7 @@ Select(Widget w,
                    if (!g->grid.singleClickActivation) {
                       g->grid.editTimerId =
                       XtAppAddTimeOut(XtWidgetToApplicationContext(w),
-                                    doubleClickTime*2, EditTimer, (caddr_t)g);
+                                    doubleClickTime*2, EditTimer, (XtPointer)g);
                       g->grid.editTimerSet = 1;
                    }
                 }

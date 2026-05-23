@@ -3288,7 +3288,7 @@ GetCoreBackground(Widget w,
 		  int offset, 
 		  XrmValue *value)
 {
-  value->addr = (caddr_t)&w->core.background_pixel;
+  value->addr = (XPointer)&w->core.background_pixel;
 }
 
 static void 
@@ -3296,7 +3296,7 @@ GetDefaultTabWidgetClass(Widget w,
 		  int offset, 
 		  XrmValue *value)
 {
-  value->addr = (caddr_t)&xmDrawnButtonWidgetClass;
+  value->addr = (XPointer)&xmDrawnButtonWidgetClass;
 }
 
 static void 
@@ -3307,7 +3307,7 @@ GetManagerForeground(Widget w,
   XmLFolderWidget f;
 
   f = (XmLFolderWidget)w;
-  value->addr = (caddr_t)&f->manager.foreground;
+  value->addr = (XPointer)&f->manager.foreground;
 }
 
 static Boolean 

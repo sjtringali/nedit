@@ -148,12 +148,12 @@ static PrefDescripRec PrefDescrip[] = {
 
 /* Resource related command line options */
 static XrmOptionDescRec OpTable[] = {
-    {"-ask", ".autoStart", XrmoptionNoArg, (caddr_t)"False"},
-    {"-noask", ".autoStart", XrmoptionNoArg, (caddr_t)"True"},
-    {"-svrname", ".serverName", XrmoptionSepArg, (caddr_t)NULL},
-    {"-svrcmd", ".serverCommand", XrmoptionSepArg, (caddr_t)NULL},
-    {"-wait", ".waitForClose", XrmoptionNoArg, (caddr_t)"True"},
-    {"-timeout", ".timeOut", XrmoptionSepArg, (caddr_t)NULL}
+    {"-ask", ".autoStart", XrmoptionNoArg, (XtPointer)"False"},
+    {"-noask", ".autoStart", XrmoptionNoArg, (XtPointer)"True"},
+    {"-svrname", ".serverName", XrmoptionSepArg, (XtPointer)NULL},
+    {"-svrcmd", ".serverCommand", XrmoptionSepArg, (XtPointer)NULL},
+    {"-wait", ".waitForClose", XrmoptionNoArg, (XtPointer)"True"},
+    {"-timeout", ".timeOut", XrmoptionSepArg, (XtPointer)NULL}
 };
 
 /* Struct to hold info about files being opened and edited. */

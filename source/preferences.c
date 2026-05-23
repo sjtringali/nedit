@@ -1086,20 +1086,20 @@ static PrefDescripRec PrefDescrip[] = {
 };
 
 static XrmOptionDescRec OpTable[] = {
-    {"-wrap", ".autoWrap", XrmoptionNoArg, (caddr_t)"Continuous"},
-    {"-nowrap", ".autoWrap", XrmoptionNoArg, (caddr_t)"None"},
-    {"-autowrap", ".autoWrap", XrmoptionNoArg, (caddr_t)"Newline"},
-    {"-noautowrap", ".autoWrap", XrmoptionNoArg, (caddr_t)"None"},
-    {"-autoindent", ".autoIndent", XrmoptionNoArg, (caddr_t)"Auto"},
-    {"-noautoindent", ".autoIndent", XrmoptionNoArg, (caddr_t)"False"},
-    {"-autosave", ".autoSave", XrmoptionNoArg, (caddr_t)"True"},
-    {"-noautosave", ".autoSave", XrmoptionNoArg, (caddr_t)"False"},
-    {"-rows", ".textRows", XrmoptionSepArg, (caddr_t)NULL},
-    {"-columns", ".textCols", XrmoptionSepArg, (caddr_t)NULL},
-    {"-tabs", ".tabDistance", XrmoptionSepArg, (caddr_t)NULL},
-    {"-font", ".textFont", XrmoptionSepArg, (caddr_t)NULL},
-    {"-fn", ".textFont", XrmoptionSepArg, (caddr_t)NULL},
-    {"-svrname", ".serverName", XrmoptionSepArg, (caddr_t)NULL},
+    {"-wrap", ".autoWrap", XrmoptionNoArg, (XtPointer)"Continuous"},
+    {"-nowrap", ".autoWrap", XrmoptionNoArg, (XtPointer)"None"},
+    {"-autowrap", ".autoWrap", XrmoptionNoArg, (XtPointer)"Newline"},
+    {"-noautowrap", ".autoWrap", XrmoptionNoArg, (XtPointer)"None"},
+    {"-autoindent", ".autoIndent", XrmoptionNoArg, (XtPointer)"Auto"},
+    {"-noautoindent", ".autoIndent", XrmoptionNoArg, (XtPointer)"False"},
+    {"-autosave", ".autoSave", XrmoptionNoArg, (XtPointer)"True"},
+    {"-noautosave", ".autoSave", XrmoptionNoArg, (XtPointer)"False"},
+    {"-rows", ".textRows", XrmoptionSepArg, (XtPointer)NULL},
+    {"-columns", ".textCols", XrmoptionSepArg, (XtPointer)NULL},
+    {"-tabs", ".tabDistance", XrmoptionSepArg, (XtPointer)NULL},
+    {"-font", ".textFont", XrmoptionSepArg, (XtPointer)NULL},
+    {"-fn", ".textFont", XrmoptionSepArg, (XtPointer)NULL},
+    {"-svrname", ".serverName", XrmoptionSepArg, (XtPointer)NULL},
 };
 
 static const char HeaderText[] = "\

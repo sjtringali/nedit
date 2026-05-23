@@ -110,18 +110,18 @@ static int textFieldNonEmpty(Widget w);
 static void setTextField(WindowInfo* window, Time time, Widget textField);
 static void getSelectionCB(Widget w, XtPointer selectionInfo, Atom *selection,
 	Atom *type, XtPointer value, unsigned long *length, int *format);
-static void fFocusCB(Widget w, WindowInfo *window, caddr_t *callData);
-static void rFocusCB(Widget w, WindowInfo *window, caddr_t *callData);
-static void rKeepCB(Widget w, WindowInfo *window, caddr_t *callData);
-static void fKeepCB(Widget w, WindowInfo *window, caddr_t *callData);
+static void fFocusCB(Widget w, WindowInfo *window, XtPointer *callData);
+static void rFocusCB(Widget w, WindowInfo *window, XtPointer *callData);
+static void rKeepCB(Widget w, WindowInfo *window, XtPointer *callData);
+static void fKeepCB(Widget w, WindowInfo *window, XtPointer *callData);
 static void replaceCB(Widget w, WindowInfo *window,
 	XmAnyCallbackStruct *callData); 
 static void replaceAllCB(Widget w, WindowInfo *window,
 	XmAnyCallbackStruct *callData);
 static void rInSelCB(Widget w, WindowInfo *window,
 	XmAnyCallbackStruct *callData); 
-static void rCancelCB(Widget w, WindowInfo *window, caddr_t callData);
-static void fCancelCB(Widget w, WindowInfo *window, caddr_t callData);
+static void rCancelCB(Widget w, WindowInfo *window, XtPointer callData);
+static void fCancelCB(Widget w, WindowInfo *window, XtPointer callData);
 static void rFindCB(Widget w,WindowInfo *window,XmAnyCallbackStruct *callData);
 static void rFindTextValueChangedCB(Widget w, WindowInfo *window, XKeyEvent *event);
 static void rFindArrowKeyCB(Widget w, WindowInfo *window, XKeyEvent *event);
@@ -156,7 +156,7 @@ static void replaceMultiFileCB(Widget w, WindowInfo *window,
 	XmAnyCallbackStruct *callData);
 static void rMultiFileReplaceCB(Widget w, WindowInfo *window,  
        XmAnyCallbackStruct * callData);
-static void rMultiFileCancelCB(Widget w, WindowInfo *window, caddr_t callData);
+static void rMultiFileCancelCB(Widget w, WindowInfo *window, XtPointer callData);
 static void rMultiFileSelectAllCB(Widget w, WindowInfo *window, 
        XmAnyCallbackStruct *callData);
 static void rMultiFileDeselectAllCB(Widget w, WindowInfo *window, 
@@ -1679,19 +1679,19 @@ static void removeDoomedWindowFromList(WindowInfo* window, int index)
 ** has the focus for sure.  I have tried many other ways and this is by far
 ** the least nasty.
 */
-static void fFocusCB(Widget w, WindowInfo *window, caddr_t *callData) 
+static void fFocusCB(Widget w, WindowInfo *window, XtPointer *callData) 
 {
     window = WidgetToWindow(w);
     SET_ONE_RSRC(window->findDlog, XmNdefaultButton, window->findBtn);
 }
-static void rFocusCB(Widget w, WindowInfo *window, caddr_t *callData) 
+static void rFocusCB(Widget w, WindowInfo *window, XtPointer *callData) 
 {
     window = WidgetToWindow(w);
     SET_ONE_RSRC(window->replaceDlog, XmNdefaultButton, window->replaceBtn);
 }
 
 /* when keeping a window up, clue the user what window it's associated with */
-static void rKeepCB(Widget w, WindowInfo *window, caddr_t *callData) 
+static void rKeepCB(Widget w, WindowInfo *window, XtPointer *callData) 
 {
     char title[MAXPATHLEN + 19];
 
@@ -1703,7 +1703,7 @@ static void rKeepCB(Widget w, WindowInfo *window, caddr_t *callData)
     } else
     	XtVaSetValues(XtParent(window->replaceDlog), XmNtitle, "Replace/Find", NULL);
 }
-static void fKeepCB(Widget w, WindowInfo *window, caddr_t *callData) 
+static void fKeepCB(Widget w, WindowInfo *window, XtPointer *callData) 
 {
     char title[MAXPATHLEN + 11];
 
@@ -1976,7 +1976,7 @@ static void rMultiFileReplaceCB(Widget w, WindowInfo *window,
     }
 }
 
-static void rMultiFileCancelCB(Widget w, WindowInfo *window, caddr_t callData) 
+static void rMultiFileCancelCB(Widget w, WindowInfo *window, XtPointer callData) 
 {
     window = WidgetToWindow(w);
 
@@ -2203,7 +2203,7 @@ static void rInSelCB(Widget w, WindowInfo *window,
     	unmanageReplaceDialogs(window);
 }
 
-static void rCancelCB(Widget w, WindowInfo *window, caddr_t callData) 
+static void rCancelCB(Widget w, WindowInfo *window, XtPointer callData) 
 {
     window = WidgetToWindow(w);
 
@@ -2214,7 +2214,7 @@ static void rCancelCB(Widget w, WindowInfo *window, caddr_t callData)
     unmanageReplaceDialogs(window);
 }
 
-static void fCancelCB(Widget w, WindowInfo *window, caddr_t callData) 
+static void fCancelCB(Widget w, WindowInfo *window, XtPointer callData) 
 {
     window = WidgetToWindow(w);
 

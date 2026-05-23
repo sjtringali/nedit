@@ -1112,7 +1112,7 @@ GetManagerForeground(Widget w,
 	XmLTreeWidget t;
 
 	t = (XmLTreeWidget)w;
-	value->addr = (caddr_t)&t->manager.foreground;
+	value->addr = (XPointer)&t->manager.foreground;
 	}
 
 static void

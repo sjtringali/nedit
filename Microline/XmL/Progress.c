@@ -75,19 +75,19 @@ static XtResource resources[] =
 		XmNcompleteValue, XmCCompleteValue,
 		XtRInt, sizeof(int),
 		XtOffset(XmLProgressWidget, progress.completeValue),
-		XtRImmediate, (caddr_t)100
+		XtRImmediate, (XtPointer)100
 		},
 		{
 		XmNnumBoxes, XmCNumBoxes,
 		XtRInt, sizeof(int),
 		XtOffset(XmLProgressWidget, progress.numBoxes),
-		XtRImmediate, (caddr_t)10
+		XtRImmediate, (XtPointer)10
 		},
 		{
 		XmNvalue, XmCValue,
 		XtRInt, sizeof(int),
 		XtOffset(XmLProgressWidget, progress.value),
-		XtRImmediate, (caddr_t)0
+		XtRImmediate, (XtPointer)0
 		},
 		{
 		XmNfontList, XmCFontList,

@@ -345,7 +345,7 @@ XmLCvtStringToUChar(Display *dpy,
 		*(unsigned char *)(toVal->addr) = map[i].value;
 		}
 	else
-		toVal->addr = (caddr_t)&map[i].value;
+		toVal->addr = (XPointer)&map[i].value;
 	toVal->size = sizeof(unsigned char);
 	return True;
 	}
@@ -1095,7 +1095,7 @@ XmLMessageBox(Widget w,
 	WM_DELETE_WINDOW = XmInternAtom(XtDisplay(w), "WM_DELETE_WINDOW",
 		False);
 	XmAddWMProtocolCallback(shell, WM_DELETE_WINDOW, XmLMessageBoxWMDelete,
-		(caddr_t)&status);
+		(XtPointer)&status);
 	XmStringFree(str);
 	XmStringFree(titleStr);
 	XtAddCallback(dialog, XmNokCallback, XmLMessageBoxResponse,

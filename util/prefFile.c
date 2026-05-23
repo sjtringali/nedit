@@ -135,7 +135,7 @@ XrmDatabase CreatePreferencesDatabase(const char *fullName, const char *appName,
     char **argvCopy;
     char *fileString;
     static XrmOptionDescRec xrmOnlyTable[] =
-	    {{"-xrm", NULL, XrmoptionResArg, (caddr_t)NULL}};
+	    {{"-xrm", NULL, XrmoptionResArg, (XtPointer)NULL}};
         
     /* read the preferences file into an X database.
        On failure prefDB will be NULL. */

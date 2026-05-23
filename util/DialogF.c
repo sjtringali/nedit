@@ -72,16 +72,16 @@ static char **PromptHistory = NULL;
 static int NPromptHistoryItems = -1;
 
 static void apply_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data);
+	XtPointer call_data);
 static void help_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data);
+	XtPointer call_data);
 static void cancel_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data);
+	XtPointer call_data);
 static void ok_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data);
+	XtPointer call_data);
 static void destroy_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data);
-static void focusCB(Widget w, Widget dialog, caddr_t call_data);
+	XtPointer call_data);
+static void focusCB(Widget w, Widget dialog, XtPointer call_data);
 static void addEscapeHandler(Widget dialog, struct dfcallbackstruct *df,
     	int whichBtn);
 static void escapeHelpCB(Widget w, XtPointer callData, XEvent *event,
@@ -493,35 +493,35 @@ void SetDialogFPromptHistory(char **historyList, int nItems)
 }
 
 static void ok_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data)
+	XtPointer call_data)
 {
     client_data->done_with_dialog = True;
     client_data->button = 1;		/* Return Button number pressed */
 }
 
 static void cancel_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data)
+	XtPointer call_data)
 {
     client_data->done_with_dialog = True;
     client_data->button = 2 + client_data->apply_up; /* =3 if apply button managed */
 }
 
 static void help_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data)
+	XtPointer call_data)
 {
     client_data->done_with_dialog = True;
     client_data->button = 3 + client_data->apply_up; /* =4 if apply button managed */
 }
 
 static void apply_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data)
+	XtPointer call_data)
 {
     client_data->done_with_dialog = True;
     client_data->button = 2;		/* Motif puts between OK and cancel */
 }
 
 static void destroy_callback (Widget w, struct dfcallbackstruct *client_data,
-	caddr_t call_data)
+	XtPointer call_data)
 {
     client_data->destroyed = True;
 }
@@ -530,7 +530,7 @@ static void destroy_callback (Widget w, struct dfcallbackstruct *client_data,
 ** callback for returning default button status to the ok button once we're
 ** sure the text area in the prompt dialog has input focus.
 */
-static void focusCB(Widget w, Widget dialog, caddr_t call_data)
+static void focusCB(Widget w, Widget dialog, XtPointer call_data)
 {
     XtVaSetValues(dialog, XmNdefaultButton,
     	    XmSelectionBoxGetChild(dialog, XmDIALOG_OK_BUTTON), NULL);

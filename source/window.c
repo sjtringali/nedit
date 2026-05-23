@@ -158,7 +158,7 @@ static int compareWindowNames(const void *windowA, const void *windowB);
 static Widget manageToolBars(Widget toolBarsForm);
 static void hideTearOffs(Widget menuPane);
 static void CloseDocumentWindow(Widget w, WindowInfo *window, XtPointer callData);
-static void closeTabCB(Widget w, Widget mainWin, caddr_t callData);
+static void closeTabCB(Widget w, Widget mainWin, XtPointer callData);
 static void raiseTabCB(Widget w, XtPointer clientData, XtPointer callData);
 static Widget createTextArea(Widget parent, WindowInfo *window, int rows,
         int cols, int emTabDist, char *delimiters, int wrapMargin,
@@ -4681,7 +4681,7 @@ static void closeTabProc(XtPointer clientData, XtIntervalId *id)
 /*
 ** callback to close-tab button.
 */
-static void closeTabCB(Widget w, Widget mainWin, caddr_t callData)
+static void closeTabCB(Widget w, Widget mainWin, XtPointer callData)
 {
     /* FIXME: XtRemoveActionHook() related coredump
     
