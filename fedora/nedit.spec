@@ -1,6 +1,6 @@
 Summary: A GUI text editor for systems with X
 Name: nedit
-Version: 5.8
+Version: 5.8.1
 Release: 1%{?dist}
 Source: http://sourceforge.net/projects/nedit/files/nedit-source/nedit-%{version}-src.tar.gz
 Source1: nedit.desktop
@@ -35,7 +35,7 @@ Macintosh or Microsoft Windows style of interface.
 pushd doc
 # Upstream really doesn't want you generating the manpages, but they forgot to
 # include the manpages in 5.7. So generate them.
-make VERSION='NEdit 5.8' man
+make VERSION='NEdit 5.8.1' man
 popd
 make linux C_OPT_FLAGS="$RPM_OPT_FLAGS"
 

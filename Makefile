@@ -56,7 +56,7 @@ realclean: clean
 # Source distributions
 # Since compress is gone these days, we'll standardize on .gz
 #
-VERSION=5.8
+VERSION=5.8.1
 SRC_RELEASE=nedit-$(VERSION)-src
 dist:
 	git archive --format=tar --prefix=nedit-$(VERSION)/ --worktree-attributes HEAD > $(SRC_RELEASE).tar

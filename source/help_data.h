@@ -5069,7 +5069,7 @@ NULL
 static char * htxt_version [] = {
 "\01A%s\n",
 "\01I\n",
-"Active developers: Tony Balinski, Arne Førlie, Nathaniel Gray, Eddy De ",
+"Active developers: Tony Balinski, Arne Fï¿½rlie, Nathaniel Gray, Eddy De ",
 "Greef, Thorsten Haude, Andrew Hood, Scott Tringali, and TK Soh. ",
 "\n\n",
 "Retired developers: Mark Edel, Joy Kyriakopulos, Christopher Conrad, Jim ",
@@ -5748,4 +5748,4 @@ Href H_R [] =
     {NULL,     14799, HELP_PREFERENCES,   "Autoload Files"}
 };
 
-static const char * NEditVersion = "NEdit 5.8\nApr 23, 2026\n";
+static const char * NEditVersion = "NEdit 5.8.1\nMay 2026\n";
