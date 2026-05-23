@@ -23,6 +23,6 @@ LIBS=-L${PREFIX}/lib -lXm -lXpm -lXext -lXt -lSM -lICE -lX11 -lm
 
 include Makefile.common
 
-install: nedit nc
+install: nedit ncl
 	${INSTALL} ${COPY} ${STRIP} nedit $(DESTDIR)${PREFIX}/bin
-	${INSTALL} ${COPY} ${STRIP} nc $(DESTDIR)${PREFIX}/bin/nclient
+	${INSTALL} ${COPY} ${STRIP} ncl $(DESTDIR)${PREFIX}/bin/nclient

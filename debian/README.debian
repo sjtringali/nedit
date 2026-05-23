@@ -1,9 +1,8 @@
 nedit for Debian
 ----------------------
 
-Note that due to a program name conflict with netcat (also named "nc"), NEdit's
-version of "nc" has been renamed to "nedit-nc".  Sorry for any confusion this
-may cause.
+The NEdit client program is named "ncl" upstream.  Debian renames it to
+"nedit-nc" for consistency with prior packaging.
 
 The shell sh is used by default. You can switch to csh if necessary.
 

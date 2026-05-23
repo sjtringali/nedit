@@ -1,4 +1,4 @@
-                    NEdit Version 5.8, April 2026
+                    NEdit Version 5.8.1, May 2026
 
 NEdit is a multi-purpose text editor for the X Window System, which combines a
 standard, easy to use, graphical user interface with the thorough functionality
@@ -42,7 +42,7 @@ AUTHORS
 
 NEdit was written by Mark Edel, Joy Kyriakopulos, Christopher Conrad,
 Jim Clark, Arnulfo Zepeda-Navratil, Suresh Ravoor, Tony Balinski, Max
-Vohlken, Yunliang Yu, Donna Reid, Arne Førlie, Eddy De Greef, Steve
+Vohlken, Yunliang Yu, Donna Reid, Arne Fï¿½rlie, Eddy De Greef, Steve
 LoBasso, Alexander Mai, Scott Tringali, Thorsten Haude, Steve Haehn,
 Andrew Hood, Nathaniel Gray, and TK Soh.
 
@@ -61,9 +61,9 @@ John Fieber, Chris Ross, Nathaniel Gray, Joachim Lous, Mike Duigou,
 Seak Teng-Fong, Joor Loohuis, Mark Jones, and Niek van den Berg.
 
 
-VERSION 5.8
+VERSION 5.8.1
 
-Version 5.8 is a maintenance release.
+Version 5.8.1 is a maintenance release.
 
 See the ReleaseNotes file for a more detailed description of these new features
 and a list of bugs fixed in this version.
@@ -106,7 +106,7 @@ where <machine-type> is one of suffixes of a makefile in the directory
 	make sgi
 
 If everything works properly, this will produce two executables called
-'nedit' and 'nc' in the directory called 'source'.
+'nedit' and 'ncl' in the directory called 'source'.
 
 
 The Source Directories
@@ -175,15 +175,11 @@ any special installation.  To install NEdit on Unix systems, simply put the
 nedit executable in your path.  
 
 To use NEdit in client/server mode (which is the recommended way of using it),
-you also need the nedit client program, nc, which, again, needs no special
-installation.  On some systems, the name nc may conflict with the 'netcat'
-program.  In that case, choose a different name for the executable and simply
-rename it.  The recommend alternative is 'ncl'.  Don't forget to put the
-man-pages for nedit and nc into a place where your man command is able to find
-them (e.g. /usr/man/man1/nedit.1), and don't forget to rename nc.man to ncl.man
-if you've renamed nc to ncl.
+you also need the nedit client program, ncl, which, again, needs no special
+installation.  Don't forget to put the man-pages for nedit and ncl into a place
+where your man command is able to find them (e.g. /usr/man/man1/nedit.1).
 
-On VMS systems, nedit and nc must be defined as a foreign commands so that they
+On VMS systems, nedit and ncl must be defined as a foreign commands so that they
 can process command line arguments. For example, if nedit.exe were in the
 directory mydir on the disk called mydev, adding the following line to your
 login.com file would define the nedit command:
@@ -198,10 +194,10 @@ right of the menu bar. For more information on the syntax of the nedit command
 line, look under the heading of "NEdit Command Line".
 
 The recommended way to use NEdit, though, is in client/server mode, invoked by
-the nc executable. It allows you to edit multiple files within the same
+the ncl executable. It allows you to edit multiple files within the same
 instance of NEdit (but still in multiple windows). This saves memory (only one
 process keeps running), and enables additional functionality (such as find &
-replace accross multiple windows). See "Server Mode and nc" in the help menu
+replace accross multiple windows). See "Server Mode and ncl" in the help menu
 for more information.
 
 If you are accessing a host Unix system from a remote workstation or X
@@ -365,6 +361,26 @@ bound to the corresponding action in NEdit, try the following:
 
 
 COMPATIBILITY WITH PREVIOUS VERSIONS
+
+* Upgrading from 5.8 to 5.8.1
+
+  - The NEdit client program has been renamed from 'nc' to 'ncl'.
+
+    Users with scripts, shell aliases, or desktop launchers that invoke 'nc'
+    should update them to use 'ncl'.
+
+    X resources set under the 'nc' application instance name (for example,
+    nc.autoStart, nc.serverCommand, nc.timeOut) continue to work unchanged.
+    The preferred form going forward is to use the application class name,
+    NEditClient.autoStart etc., which is independent of the binary name.
+
+    Distribution packages may install the binary under a local name (such as
+    nedit-nc or nedit-client) to suit packaging conventions.  Consult your
+    distribution's documentation if you use a packaged version.
+
+    The rename resolves a long-standing conflict with the 'nc' (netcat) program
+    found on most systems.  'ncl' was already the recommended workaround in
+    previous NEdit documentation.
 
 Existing .nedit Files
 

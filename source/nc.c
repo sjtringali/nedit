@@ -112,7 +112,7 @@ static const char cmdLineHelp[] =
 #ifdef VMS
 "[Sorry, no on-line help available.]\n"; /* Why is that ? */
 #else
-"Usage:  nc [-read] [-create]\n"
+"Usage:  ncl [-read] [-create]\n"
 "           [-line n | +n] [-do command] [-lm languagemode]\n"
 "           [-svrname name] [-svrcmd command]\n"
 "           [-ask] [-noask] [-timeout seconds]\n"
@@ -1001,7 +1001,7 @@ static void copyCommandLineArg(CommandLine *commandLine, const char *arg)
 /* Print version of 'nc' */
 static void printNcVersion(void ) {
    static const char *const ncHelpText = \
-   "nc (NEdit) Version 5.8.1 (May 2026)\n\n\
+   "ncl (NEdit) Version 5.8.1 (May 2026)\n\n\
      Built on: %s, %s, %s\n";
      
     fprintf(stdout, ncHelpText,

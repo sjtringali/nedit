@@ -72,22 +72,22 @@ nedit.doc: .version help.etx setext
 	@ echo "Creating NEdit plain text documenation..."
 	@ ./setext -c NEDITDOC -v version="`cat .version`" help.etx nedit.doc
 
-nc.man: .version
+ncl.man: .version
 nedit.man: .version
 .pod.man:
 	@ echo "Creating $* man page..."
 	@ which pod2man > /dev/null 2>&1 || ( echo "Sorry, you need pod2man." && exit 1 )
-	@ pod2man --release="`cat .version`" --center="NEdit documentation" $*.pod > $@ 
+	@ pod2man --release="`cat .version`" --center="NEdit documentation" $*.pod > $@
 
 doc: .version nedit.doc nedit.html html/nedit.html
 
-man: .version nedit.man nc.man
+man: .version nedit.man ncl.man
 
 all: help doc man
 
 clean:
 	@ echo "Removing generated NEdit documentation..."
-	@ rm -rf help nedit.html html nedit.doc .version nedit.man nc.man
+	@ rm -rf help nedit.html html nedit.doc .version nedit.man ncl.man
 
 #
 # FAQ targets. Requires an XSLT parser and processor, such as Java with the

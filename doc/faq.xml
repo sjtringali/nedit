@@ -1251,23 +1251,23 @@ a2ps, enscript, and genscript.</p>
 
 <section id="sect_server_mode">
 
-<title>Server mode and nc</title>
+<title>Server mode and ncl</title>
 
 <qna id="N763">
-<q>I want to use <code>nc</code> as an external
+<q>I want to use <code>ncl</code> as an external
 editor from my mailer, but my mailer doesn't wait for the editor
 to finish</q>
 
 <long-q>
 <p>I use a mailer
-which can invoke an external editor, but if I use nc, the mailer process
+which can invoke an external editor, but if I use ncl, the mailer process
 continues and assumes the editor has finished, when in fact it hasn't.</p>
 </long-q>
 
 <a>
 
-<p>nc is actually finished communicating with the NEdit server when it
-returns.  It's possible to create a shell command that invokes nc and
+<p>ncl is actually finished communicating with the NEdit server when it
+returns.  It's possible to create a shell command that invokes ncl and
 then goes to sleep, and a second script to be run from the NEdit Shell
 menu, which looks for the sleeping process with a matching file name
 and kills it.  Try the shell scripts in:</p>
@@ -1283,10 +1283,10 @@ and kills it.  Try the shell scripts in:</p>
 
 <qna id="N788">
 <q>I started nedit as root, then tried later to edit a file as myself with
-<code>nc</code>; the file was opened in the root's nedit</q>
+<code>ncl</code>; the file was opened in the root's nedit</q>
 
-<long-q> <p>I started nedit (via <code>nc</code>) as root, and then
-later tried to edit a file as myself with <code>nc</code>. I was very
+<long-q> <p>I started nedit (via <code>ncl</code>) as root, and then
+later tried to edit a file as myself with <code>ncl</code>. I was very
 suprised to see that a new nedit wasn't started--rather, I was given
 the old nedit window, with root permissions. Isn't this a security
 hole?</p> </long-q>
@@ -1302,7 +1302,7 @@ see this problem any more.</p>
 
 <p>In your case, my guess is that you used su to become root, then
 started an nedit server as root.  On a system which returns the
-original user name, both the new server and the nc client program
+original user name, both the new server and the ncl client program
 think the user name is your original user name, so the server accepts
 requests from both you as root and you as you.</p>
 
@@ -1747,14 +1747,14 @@ mail to <email>develop@nedit.org</email></p>
 </qna>
 
 <qna id="N1140">
-<q>When I try to use nc to start an nedit server, I receive a message 
+<q>When I try to use ncl to start an nedit server, I receive a message 
 <tt>(filename): forward host lookup failed: ...</tt></q>
 
 <long-q>
-<p>When I try to use nc to start an nedit server, for instance using</p>
+<p>When I try to use ncl to start an nedit server, for instance using</p>
 
 <pre>
-    nc (filename)
+    ncl (filename)
 </pre>
 
 <p>I receive the following error message:</p>
@@ -1768,10 +1768,10 @@ mail to <email>develop@nedit.org</email></p>
 
 <a>
 
-<p>There is another program called <code>nc</code> which is installed on
-some systems. In this case, <code>nc</code> is for <code>netcat</code>,
+<p>There is another program called <code>ncl</code> which is installed on
+some systems. In this case, <code>ncl</code> is for <code>netcat</code>,
 some kind of network diagnostic tool. You can safely rename NEdit's
-<code>nc</code> to something else (we recommend ncl), or put it first in
+<code>ncl</code> to something else (we recommend ncl), or put it first in
 your path before <code>netcat</code>.</p>
 
 </a>

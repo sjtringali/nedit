@@ -15,15 +15,16 @@ XMLLIB = ../Microline/XmL/libXmL.a
 .c.o:
 	$(CC) -c -I../Microline -I../Xlt $(CFLAGS) -o $@ $<
 
-all: nedit nc
+all: nedit ncl
 
 nedit: $(OBJS) ../util/libNUtil.a $(XMLLIB) $(XLTLIB)
 	$(CC) $(CFLAGS) $(OBJS) $(XMLLIB) \
 	 $(XLTLIB) ../util/libNUtil.a $(LIBS) -o $@
 
 # Note LIBS isn't quite right here; it links unnecessarily against Motif
-nc: nc.o server_common.o ../util/libNUtil.a
+ncl: nc.o server_common.o ../util/libNUtil.a
 	$(CC) $(CFLAGS) nc.o server_common.o ../util/libNUtil.a $(LIBS) -o $@
+	ln -f ncl nc
 
 help.o: help.c
 	$(CC) $(CFLAGS) $(BIGGER_STRINGS) -c help.c -o $@
@@ -35,7 +36,7 @@ highlightData.o: highlightData.c
 	$(CC) $(CFLAGS) $(BIGGER_STRINGS) -c highlightData.c -o $@
 
 clean:
-	rm -f $(OBJS) nedit nc nc.o parse.c
+	rm -f $(OBJS) nedit ncl nc nc.o parse.c
 
 parse.c: parse.y
 	@echo "NOTE:  Don't worry about 'command not found' errors here"

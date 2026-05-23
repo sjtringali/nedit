@@ -31,7 +31,7 @@ all:
 	    $(MAKE) -f Makefile.$@ libNUtil.a)
 	(cd Xlt;    $(MAKE) -f Makefile.$@ libXlt.a)
 	(cd Microline/XmL;    $(MAKE) -f Makefile.$@ libXmL.a)
-	(cd source; $(MAKE) -f Makefile.$@ nedit nc)
+	(cd source; $(MAKE) -f Makefile.$@ nedit ncl)
 	@source/nedit -V
 
 # This should not be in the default build, as users may not have Perl
@@ -69,14 +69,14 @@ dist:
 # The following is for creating binary packages of NEdit.
 #
 RELEASE=nedit-$(VERSION)-`uname -s`-`uname -m`
-BINDIST-FILES=source/nedit source/nc README COPYRIGHT ReleaseNotes doc/nedit.doc doc/nedit.html doc/nedit.man doc/nc.man doc/faq.txt
+BINDIST-FILES=source/nedit source/ncl README COPYRIGHT ReleaseNotes doc/nedit.doc doc/nedit.html doc/nedit.man doc/ncl.man doc/faq.txt
 
 dist-bin: $(BINDIST-FILES)
 	rm -rf $(RELEASE)
 	mkdir -p $(RELEASE)
 	cp $(BINDIST-FILES) $(RELEASE)/
-	strip $(RELEASE)/nedit $(RELEASE)/nc
-	chmod 555 $(RELEASE)/nedit $(RELEASE)/nc
+	strip $(RELEASE)/nedit $(RELEASE)/ncl
+	chmod 555 $(RELEASE)/nedit $(RELEASE)/ncl
 	tar cf $(RELEASE).tar $(RELEASE)
 	compress -c $(RELEASE).tar > $(RELEASE).tar.Z
 	-gzip -9 -c $(RELEASE).tar > $(RELEASE).tar.gz

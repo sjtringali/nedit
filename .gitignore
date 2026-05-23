@@ -4,6 +4,7 @@ Microline/XmL/Makefile.*
 Xlt/Makefile.*
 source/Makefile.*
 source/nc
+source/ncl
 source/nedit
 source/parse.c
 util/Makefile.*

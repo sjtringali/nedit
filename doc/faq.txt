@@ -666,20 +666,20 @@ SERVER MODE AND NC
 ------------------
 
 
-> I use a mailer which can invoke an external editor, but if I use nc, the
+> I use a mailer which can invoke an external editor, but if I use ncl, the
 > mailer process continues and assumes the editor has finished, when in fact
 > it hasn't.
 
-nc is actually finished communicating with the NEdit server when it
-returns. It's possible to create a shell command that invokes nc and then
+ncl is actually finished communicating with the NEdit server when it
+returns. It's possible to create a shell command that invokes ncl and then
 goes to sleep, and a second script to be run from the NEdit Shell menu,
 which looks for the sleeping process with a matching file name and kills
 it. Try the shell scripts in:
 
     ftp://ftp.nedit.org/pub/contrib/misc/nc_and_wait.tar
 
-> I started nedit (via 'nc') as root, and then later tried to edit a file as
-> myself with 'nc'. I was very suprised to see that a new nedit wasn't
+> I started nedit (via 'ncl') as root, and then later tried to edit a file as
+> myself with 'ncl'. I was very suprised to see that a new nedit wasn't
 > started--rather, I was given the old nedit window, with root permissions.
 > Isn't this a security hole?
 
@@ -692,7 +692,7 @@ more.
 
 In your case, my guess is that you used su to become root, then started an
 nedit server as root. On a system which returns the original user name,
-both the new server and the nc client program think the user name is your
+both the new server and the ncl client program think the user name is your
 original user name, so the server accepts requests from both you as root
 and you as you.
 
@@ -943,18 +943,18 @@ This should be working properly on most systems as of NEdit 5.1 or later.
 If it's not, try re-building NEdit with -DNO_XMIM. If it still doesn't
 work, send mail to develop@nedit.org
 
-> When I try to use nc to start an nedit server, for instance using
+> When I try to use ncl to start an nedit server, for instance using
 > 
->     nc (filename)
+>     ncl (filename)
 > 
 > I receive the following error message:
 > 
 >    (filename): forward host lookup failed:
 >                Host name lookup failure: Connection refused
 
-There is another program called 'nc' which is installed on some systems. In
-this case, 'nc' is for 'netcat', some kind of network diagnostic tool. You
-can safely rename NEdit's 'nc' to something else (we recommend ncl), or put
+There is another program called 'ncl' which is installed on some systems. In
+this case, 'ncl' is for 'netcat', some kind of network diagnostic tool. You
+can safely rename NEdit's 'ncl' to something else (we recommend ncl), or put
 it first in your path before 'netcat'.
 
 > Whenever I try to open existing files by using menu, nedit crashes, and

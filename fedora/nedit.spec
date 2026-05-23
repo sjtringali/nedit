@@ -44,10 +44,10 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d -m 755 $RPM_BUILD_ROOT%{_bindir}
 install -d -m 755 $RPM_BUILD_ROOT%{_mandir}/man1
-mv source/nc source/nedit-client
+mv source/ncl source/nedit-client
 install -m 755 source/nedit source/nedit-client $RPM_BUILD_ROOT%{_bindir}
 install -p -m 644 doc/nedit.man $RPM_BUILD_ROOT%{_mandir}/man1/nedit.1x
-mv doc/nc.man doc/nedit-client.man
+mv doc/ncl.man doc/nedit-client.man
 install -p -m 644 doc/nedit-client.man $RPM_BUILD_ROOT%{_mandir}/man1/nedit-client.1x
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps

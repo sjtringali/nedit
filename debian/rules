@@ -42,9 +42,9 @@ override_dh_auto_build:
 	$(MAKE) CFLAGS="$(CFLAGS)" linux
 	$(MAKE) -C doc VERSION="$(VERSION)" all
 
-	mv doc/nc.man doc/nedit-nc.1
+	mv doc/ncl.man doc/nedit-nc.1
 	mv doc/nedit.man doc/nedit.1
-	mv source/nc source/nedit-nc
+	mv source/ncl source/nedit-nc
 	$(restore)
 
 override_dh_auto_clean:
