@@ -1,4 +1,4 @@
-          Release Notes for NEdit Version 5.8, April 2026
+          Release Notes for NEdit Version 5.8.1, May 2026
 
 
 This file contains last minute notes to users about the release, which are not
@@ -10,6 +10,18 @@ version.
 If you are upgrading NEdit from a version prior to 5.0, please see the notes in
 the README file which came with the (source or executable) distribution kit,
 about updating macros and font settings in your .nedit file.
+
+Changes in 5.8.1
+
+  - Folded in patches from downstream distributions (macOS Ports, FreeBSD,
+    OpenBSD, NetBSD) covering platform makefile fixes and portability
+    improvements.
+
+  - Fixed compiler warnings to avoid buffer overlflows, and cleaned up
+    cast warnings.
+
+  - Fixed nedit -V incorrectly reporting <unknown> when a display is
+    available.
 
 New Features in 5.8
 
