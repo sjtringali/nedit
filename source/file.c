@@ -1207,7 +1207,7 @@ static void backupFileName(WindowInfo *window, char *name, size_t len)
 static int writeBckVersion(WindowInfo *window)
 {
 #ifndef VMS
-    char fullname[MAXPATHLEN], bckname[MAXPATHLEN];
+    char fullname[MAXPATHLEN], bckname[MAXPATHLEN+5];
     struct stat statbuf;
     int in_fd, out_fd;
     char *io_buffer;

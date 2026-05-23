@@ -788,7 +788,12 @@ static void addItemToList(char **buf, const char *item, int *count)
 }
 
 
-/*  given a font name this function returns the part used in the first 
+/* XLFD field components are bounded by TEMP_BUF_SIZE; GCC can't know that
+   combining two fields never overflows in practice. */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow"
+
+/*  given a font name this function returns the part used in the first
     scroll list */
 
 static void getFontPart(const char *font, char *buff1)
@@ -849,8 +854,9 @@ static void getStylePart(const char *font, char *buff1)
         strcpy(buff1, "-");
 }
 
+#pragma GCC diagnostic pop
 
-/*  given a font name this function returns the part used in the third 
+/*  given a font name this function returns the part used in the third
     scroll list */
 
 static void getSizePart(const char *font, char *buff1, int inPixels)

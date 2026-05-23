@@ -3102,7 +3102,7 @@ static void exitAP(Widget w, XEvent *event, String *args, Cardinal *nArgs)
 	lineLen = 0;
         strcpy(ptr, "Editing: "); ptr += 9; lineLen += 9;
         for (win=WindowList; win!=NULL; win=win->next) {
-    	    sprintf(filename, "%s%s", win->filename, win->fileChanged? "*": "");
+    	    sprintf(filename, "%.*s%s", MAXPATHLEN-2, win->filename, win->fileChanged? "*": "");
 	    title = filename;
             titleLen = strlen(title);
             if (ptr - exitMsg + titleLen + 30 >= DF_MAX_MSG_LENGTH) {

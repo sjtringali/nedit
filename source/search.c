@@ -2045,7 +2045,7 @@ static void uploadFileListItems(WindowInfo* window, Bool replace)
 {
     XmStringTable names;
     int           nWritable, i, *selected, selectedCount;
-    char          buf[MAXPATHLEN+1], policy;
+    char          buf[MAXPATHLEN*2], policy;
     Bool          usePathNames;
     WindowInfo    *w;
     Widget        list;

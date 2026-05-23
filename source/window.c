@@ -3612,12 +3612,12 @@ void RefreshTabState(WindowInfo *win)
        "*" (modified) will change per label alignment setting */
     XtVaGetValues(win->tab, XmNalignment, &alignment, NULL);
     if (alignment != XmALIGNMENT_END) {
-       sprintf(labelString, "%s%s",
+       sprintf(labelString, "%s%.*s",
                win->fileChanged? "*" : "",
-               win->filename);
+               MAXPATHLEN-2, win->filename);
     } else {
-       sprintf(labelString, "%s%s",
-               win->filename,
+       sprintf(labelString, "%.*s%s",
+               MAXPATHLEN-2, win->filename,
                win->fileChanged? "*" : "");
     }
 
@@ -4544,7 +4544,7 @@ void MoveDocumentDialog(WindowInfo *window)
 {
     WindowInfo *win, *targetWin, **shellWinList;
     int i, nList=0, nWindows=0, ac;
-    char tmpStr[MAXPATHLEN+50];
+    char tmpStr[MAXPATHLEN*2];
     Widget parent, dialog, listBox, moveAllOption;
     XmString *list = NULL;
     XmString popupTitle, s1;

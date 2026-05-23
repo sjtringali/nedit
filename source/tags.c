@@ -1209,17 +1209,20 @@ static int findAllMatches(WindowInfo *window, const char *string)
             if ((i<nMatches-1 && !strcmp(tagFiles[i],tagFiles[i+1])) ||
                     (i>0 && !strcmp(tagFiles[i],tagFiles[i-1]))) {
                 if(*(tagSearch[i]) && (tagPosInf[i] != -1)) { /* etags */
-                    sprintf(temp,"%2d. %s%s %8i %s", i+1, pathname, 
-                            filename, tagPosInf[i], tagSearch[i]);
+                    sprintf(temp,"%2d. %.*s%.*s %8i %.*s", i+1,
+                            MAXPATHLEN-1, pathname, MAXPATHLEN-1, filename,
+                            tagPosInf[i], MAXLINE-1, tagSearch[i]);
                 } else if (*(tagSearch[i])) { /* ctags search expr */
-                    sprintf(temp,"%2d. %s%s          %s", i+1, pathname, 
-                            filename, tagSearch[i]);
+                    sprintf(temp,"%2d. %.*s%.*s          %.*s", i+1,
+                            MAXPATHLEN-1, pathname, MAXPATHLEN-1, filename,
+                            MAXLINE-1, tagSearch[i]);
                 } else { /* line number only */
-                    sprintf(temp,"%2d. %s%s %8i", i+1, pathname, filename,
+                    sprintf(temp,"%2d. %.*s%.*s %8i", i+1,
+                            MAXPATHLEN-1, pathname, MAXPATHLEN-1, filename,
                             tagPosInf[i]);
                 }
             } else {
-                sprintf(temp,"%2d. %s%s",i+1,pathname,filename);
+                sprintf(temp,"%2d. %.*s%.*s",i+1,MAXPATHLEN-1,pathname,MAXPATHLEN-1,filename);
             }
 
             if (NULL == (dupTagsList[i] = (char*) NEditMalloc(strlen(temp) + 1))) {

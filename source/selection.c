@@ -252,7 +252,7 @@ static void fileCB(Widget widget, XtPointer wi, Atom *sel,
     WindowInfo *window = wi;
     char *value = v;
 
-    char nameText[MAXPATHLEN], includeName[MAXPATHLEN];
+    char nameText[MAXPATHLEN*2], includeName[MAXPATHLEN];
     char filename[MAXPATHLEN], pathname[MAXPATHLEN];
     char *inPtr, *outPtr;
 #ifdef VMS
