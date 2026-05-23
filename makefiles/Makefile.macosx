@@ -1,32 +1,32 @@
-# Makefile for MacOS X (Brew)
-# Scott Tringail, 4/2026
+# Makefile for MacOS X (Homebrew)
+# Scott Tringali, 4/2026
+#
+# Homebrew X11 packages are keg-only and don't link into the main prefix,
+# so each library needs its own path.
 
-# Compatability for nedit.rb
+# Compatibility for nedit.rb
 MOTIFLINK 	= -lXm
 
-# Homebrew paths by package
-MOTIF_HOME      = /opt/homebrew/opt/openmotif
-LIBXT_HOME      = /opt/homebrew/opt/libxt
-LIBX11_HOME     = /opt/homebrew/opt/libx11
-LIBXEXT_HOME    = /opt/homebrew/opt/libxext
-LIBXPM_HOME     = /opt/homebrew/opt/libxpm
-LIBSM_HOME      = /opt/homebrew/opt/libsm
-LIBICE_HOME     = /opt/homebrew/opt/libice
-LIBXP_HOME      = /opt/homebrew/opt/libxp
+BREW_PREFIX     = /opt/homebrew
+MOTIF_HOME      = $(BREW_PREFIX)/opt/openmotif
+LIBXT_HOME      = $(BREW_PREFIX)/opt/libxt
+LIBX11_HOME     = $(BREW_PREFIX)/opt/libx11
+LIBXEXT_HOME    = $(BREW_PREFIX)/opt/libxext
+LIBXPM_HOME     = $(BREW_PREFIX)/opt/libxpm
+LIBSM_HOME      = $(BREW_PREFIX)/opt/libsm
+LIBICE_HOME     = $(BREW_PREFIX)/opt/libice
+LIBXP_HOME      = $(BREW_PREFIX)/opt/libxp
 
-MACOS_INCLUDES = -I/opt/homebrew/include 
-MACOS_LIBS     = -L$(LIBXT_HOME)/lib -L$(LIBX11_HOME)/lib \
-                  -L$(LIBXEXT_HOME)/lib -L$(LIBXPM_HOME)/lib \
-                  -L$(LIBSM_HOME)/lib -L$(LIBICE_HOME)/lib \
-                  -L$(LIBXP_HOME)/lib -L$(MOTIF_HOME)/lib
-
-# Note we don't use -I/opt/X11/include and -L/opt/X11/lib here,
-# which is Quartz's libraries and there's no known Motif for that.
+MACOS_INCLUDES  = -I$(BREW_PREFIX)/include
+MACOS_LIBS      = -L$(MOTIF_HOME)/lib -L$(LIBXT_HOME)/lib \
+                  -L$(LIBX11_HOME)/lib -L$(LIBXEXT_HOME)/lib \
+                  -L$(LIBXPM_HOME)/lib -L$(LIBSM_HOME)/lib \
+                  -L$(LIBICE_HOME)/lib -L$(LIBXP_HOME)/lib
 
 ############### You shouldn't need to edit anything below here ##############
 CC=cc -std=c89
 AR=libtool
-ARFLAGS=-static -o 
+ARFLAGS=-static -o
 
 # For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS
 #
@@ -43,4 +43,3 @@ LIBS=$(MACOS_LIBS) $(MOTIFLINK) -lXt -lX11
 # generic part
 #
 include Makefile.common
-
