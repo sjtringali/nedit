@@ -68,6 +68,10 @@
 #include "../debug.h"
 #endif
 
+#ifndef NEDIT_BRANCH
+#define NEDIT_BRANCH "unknown"
+#endif
+
 #define APP_NAME "nc"
 #define APP_CLASS "NEditClient"
 
@@ -1002,8 +1006,8 @@ static void copyCommandLineArg(CommandLine *commandLine, const char *arg)
 static void printNcVersion(void ) {
    static const char *const ncHelpText = \
    "ncl (NEdit) Version 5.8.1 (May 2026)\n\n\
-     Built on: %s, %s, %s\n";
-     
+     Built on: %s, %s, %s (%s)\n";
+
     fprintf(stdout, ncHelpText,
-                  COMPILE_OS, COMPILE_MACHINE, COMPILE_COMPILER);
+                  COMPILE_OS, COMPILE_MACHINE, COMPILE_COMPILER, NEDIT_BRANCH);
 }

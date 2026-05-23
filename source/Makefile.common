@@ -13,7 +13,7 @@ XLTLIB = ../Xlt/libXlt.a
 XMLLIB = ../Microline/XmL/libXmL.a
 
 .c.o:
-	$(CC) -c -I../Microline -I../Xlt $(CFLAGS) -o $@ $<
+	$(CC) -c -I../Microline -I../Xlt $(CFLAGS) $(BRANCH_CFLAGS) -o $@ $<
 
 all: nedit ncl
 
@@ -27,7 +27,7 @@ ncl: nc.o server_common.o ../util/libNUtil.a
 	ln -f ncl nc
 
 help.o: help.c
-	$(CC) $(CFLAGS) $(BIGGER_STRINGS) -c help.c -o $@
+	$(CC) $(CFLAGS) $(BRANCH_CFLAGS) $(BIGGER_STRINGS) -c help.c -o $@
 
 smartIndent.o: smartIndent.c
 	$(CC) $(CFLAGS) $(BIGGER_STRINGS) -c smartIndent.c -o $@

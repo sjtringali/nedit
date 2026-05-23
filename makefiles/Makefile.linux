@@ -23,5 +23,7 @@ ARFLAGS=-urs
 
 LIBS=-L/usr/X11R6/lib -lXm -lXt -lX11 -lm
 
+BRANCH_CFLAGS = -DNEDIT_BRANCH=\"$(shell git rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)\"
+
 include Makefile.common
 
