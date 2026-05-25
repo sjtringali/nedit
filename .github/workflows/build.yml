@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build
-        run: make linux
+        run: make -j linux
 
   mirror:
     needs: build
