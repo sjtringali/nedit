@@ -2608,7 +2608,7 @@ sub emit_helpText
 
     emit_help_menu_text( $setext, $stream, $crnt_menu, \$line );
 
-    print $stream "static char **HelpText[] = {\n$helpNameList\n};\n\n";
+    print $stream "static const char **HelpText[] = {\n$helpNameList\n};\n\n";
 
     print $stream "HelpMenu H_M [] =\n{\n";
     emit_help_menu( $stream, $crnt_menu, 0, 1 );
@@ -2711,7 +2711,7 @@ sub emit_help_menu_text
 
                 push @section, $_ ;
             }
-            print $stream "static char * htxt_$helpName [] = {\n";
+            print $stream "static const char * htxt_$helpName [] = {\n";
             $styleChanged = $initialStyle; # This forces initial style out
             $crntStyle    = $initialStyle;
             parse_setext( \@section );
@@ -2888,7 +2888,7 @@ sub emit_helpTitles
     my $crnt_menu = shift;
     
     emit_copyright( $stream, "$hlptxt --  Nirvana Editor help module data" );
-    print $stream "char *HelpTitles[] = {\n";
+    print $stream "const char *HelpTitles[] = {\n";
     emit_help_label( $stream, $crnt_menu );
     print $stream "    NULL\n};\n\n";
 }

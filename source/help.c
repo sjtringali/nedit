@@ -189,7 +189,7 @@ static void searchHelpCB(Widget w, XtPointer clientData, XtPointer callData);
 static void searchHelpAgainCB(Widget w, XtPointer clientData,
         XtPointer callData);
 static void printCB(Widget w, XtPointer clientData, XtPointer callData);
-static char *stitch(Widget  parent, char **string_list,char **styleMap);
+static char *stitch(Widget  parent, const char **string_list,char **styleMap);
 static void searchHelpText(Widget parent, int parentTopic,
         const char *searchFor, int allSections, int startPos, int startTopic);
 static void changeWindowTopic(int existingTopic, enum HelpTopic newTopic);
@@ -456,11 +456,11 @@ static void adaptNavigationButtons(int topic) {
 static char * stitch (
 
     Widget  parent,      /* used for dynamic font/color allocation */
-    char ** string_list, /* given help strings to stitch together */
+    const char ** string_list, /* given help strings to stitch together */
     char ** styleMap     /* NULL, or a place to store help styles */
 )
 {
-    char  *  cp;
+    const char  *  cp;
     char  *  section, * sp;       /* resulting help text section            */
     char  *  styleData, * sdp;    /* resulting style data for text          */
     char     style = STYLE_PLAIN; /* start off each section with this style */
@@ -553,7 +553,8 @@ void Help(enum HelpTopic topic)
 /* Setup Window/Icon title for the help window. */
 static void setHelpWinTitle(Widget win, enum HelpTopic topic) 
 {
-    char * buf, *topStr=HelpTitles[topic];
+    char * buf;
+    const char *topStr = HelpTitles[topic];
     
     buf=(char*)NEditMalloc(strlen(topStr) + 24);
     topic++; 
