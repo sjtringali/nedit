@@ -64,6 +64,7 @@ html/nedit.html: .version help.etx setext
 	@ if [ -d html ]; then \
 	      cd html; \
 	      ../setext -S -v version="`cat ../.version`" ../help.etx nedit.html; \
+	      printf '<!DOCTYPE html>\n<meta http-equiv="refresh" content="0; url=nedit.html">\n' > index.html; \
 	  else \
 	      echo "** Unable to create html directory to hold NEdit documentation"; \
 	  fi
